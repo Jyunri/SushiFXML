@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -19,7 +20,10 @@ import javafx.scene.control.Label;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Label label;
+    private Label lbCarrinho;
+    
+    @FXML
+    private TextField tfTelefone, tfCodigoCliente, tfNome, tfEndereco;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -27,6 +31,16 @@ public class FXMLDocumentController implements Initializable {
         //label.setText("Hello World!");
     }
     
+    @FXML
+    private void limparCampos(ActionEvent event){
+        System.out.println("Limpar Campos");
+        tfTelefone.clear();
+        tfCodigoCliente.clear();
+        tfNome.clear();
+        tfEndereco.clear();
+    }
+            
+            
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
