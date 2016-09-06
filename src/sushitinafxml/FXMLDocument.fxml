@@ -6,21 +6,23 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<SplitPane dividerPositions="0.5" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.5" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
    <items>
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
             <VBox prefHeight="400.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Novo Pedido" />
+                  <Button fx:id="tfNovoPedido" mnemonicParsing="false" onAction="#handleButtonAction" text="Novo Pedido" />
                   <Button mnemonicParsing="false" text="Button" />
                </children>
             </VBox>
@@ -39,7 +41,7 @@
                                     <Insets top="3.0" />
                                  </HBox.margin>
                               </Text>
-                              <TextField promptText="Ex:1239515661" />
+                              <TextField fx:id="tfTelefone" promptText="Ex:1239515661" />
                               <Button mnemonicParsing="false" text="Buscar" />
                            </children>
                            <padding>
@@ -56,7 +58,7 @@
                                     <Insets top="3.0" />
                                  </HBox.margin>
                               </Text>
-                              <TextField prefHeight="25.0" prefWidth="90.0">
+                              <TextField fx:id="tfCodigoCliente" prefHeight="25.0" prefWidth="90.0">
                                  <HBox.margin>
                                     <Insets right="50.0" />
                                  </HBox.margin>
@@ -80,7 +82,7 @@
                                  </HBox.margin>
                               </Text>
                               <Region prefHeight="25.0" prefWidth="65.0" />
-                              <TextField prefHeight="25.0" prefWidth="438.0" HBox.hgrow="ALWAYS">
+                              <TextField fx:id="tfNome" prefHeight="25.0" prefWidth="438.0" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets right="50.0" />
                                  </HBox.margin>
@@ -101,7 +103,7 @@
                                  </HBox.margin>
                               </Text>
                               <Region prefHeight="25.0" prefWidth="47.0" />
-                              <TextField prefHeight="25.0" prefWidth="438.0" HBox.hgrow="ALWAYS">
+                              <TextField fx:id="tfEndereco" prefHeight="25.0" prefWidth="438.0" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets right="50.0" />
                                  </HBox.margin>
@@ -142,9 +144,48 @@
             
                 </Tab>
           <Tab text="Pedido">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <HBox prefHeight="180.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button mnemonicParsing="false" text="Adicionar item" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" top="20.0" />
+                           </padding>
+                        </HBox>
+                     </center>
+                     <top>
+                        <VBox BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </BorderPane.margin>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Carrinho">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <GridPane fx:id="gridCarrinho" prefHeight="179.0" prefWidth="600.0" stylesheets="@stylesheets.css">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
+               </content>
           </Tab>
         </tabs>
       </TabPane>
