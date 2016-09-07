@@ -132,7 +132,7 @@
                         <HBox spacing="50.0">
                            <children>
                               <Region prefHeight="91.0" prefWidth="295.0" HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" text="Confirmar">
+                              <Button fx:id="btConfirmar" mnemonicParsing="false" text="Confirmar">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
