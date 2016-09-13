@@ -8,15 +8,27 @@ and open the template in the editor.
     Author     : daniel.adamis
 */
 
+* {
+    btn-hover-color: #AC3E3E;
+    btn-pressed-color: #8D0000;
+    
+    
+    objs-bg-color: #D0BDBD;
+    border-color: #BD8979;
+    text-color: #000000;
+    
+    txf-bg-color-focused: #AC3E3E;
+}
+
 .background {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: objs-bg-color;
 }
 
 .text {
     -fx-font-family: "Segoe UI Light", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
-    -fx-text-fill: white;
-    -fx-fill: white;
+    -fx-text-fill: text-color;
+    -fx-fill: text-color;
 }
 
 .label {
@@ -33,76 +45,70 @@ and open the template in the editor.
 }
 
 .tab-pane {
-    -fx-base: transparent, derive(#1d1d1d,20%);
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: transparent, derive(objs-bg-color,20%);
+    -fx-control-inner-background: objs-bg-color;
+    -fx-background-color: objs-bg-color;
     -fx-padding: 5;
 }
 
 .tab-pane .tab:selected {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: objs-bg-color;
     
 }
 
 .split-pane:horizontal > .split-pane-divider {
-    -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
-    -fx-background-color: transparent, derive(#1d1d1d,20%);
+    -fx-border-color: objs-bg-color objs-bg-color objs-bg-color objs-bg-color;
+    -fx-background-color: transparent, derive(objs-bg-color,20%);
 }
 
 .split-pane {
     -fx-padding: 1 0 0 0;
 }
 
-.text-field {
+.text-field, .text-area {
     -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
+    -fx-border-color: border-color;
     -fx-border-width: 2;
-    -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-text-fill: text-color;
+    /*-fx-background-insets: 0 0 0 0, 0, 1, 2;*/
     -fx-border-radius: 5px;
+    -fx-background-color: objs-bg-color;
+    -fx-opacity: 0.8;
 }
 
-.text-field:focused {
-    -fx-background-color: black;
+.text-field:focused, .text-area:focused {
+    -fx-background-color: txf-bg-color-focused;
 }
 
 .button {
     -fx-padding: 5 22 5 22;   
-    -fx-border-color: #e2e2e2;
+    -fx-border-color: border-color;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: #d8d8d8;
+    -fx-background-color: objs-bg-color;
+    -fx-text-fill: text-color;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
     -fx-border-radius: 5px;
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: btn-hover-color;
 }
 
 .button:pressed {
-  -fx-background-color: black;
-  -fx-text-fill: white;
-}
-
-.button:focused {
-    -fx-border-color: white;
-    -fx-border-width: 1, 1;
-    -fx-border-insets: 1 1 1 1, 0;
+  -fx-background-color: btn-pressed-color;
 }
 
 .button:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
+    -fx-background-color: objs-bg-color;
+    -fx-text-fill: text-color;
 }
 
-.grid-pane {
-   
+.grid-pane, .anchor-pane {
     -fx-grid-lines-visible: true;
     -fx-padding: 5 22 5 22;
-    -fx-border-color: white;
+    -fx-border-color: border-color;
     -fx-border-width: 2;
     -fx-text-alignment: center;
     -fx-wrap-text: true;
@@ -111,16 +117,16 @@ and open the template in the editor.
 /* NOT YET */
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d,20%);
+    -fx-background-color: derive(objs-bg-color,20%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d,50%);
+    -fx-background-color: derive(objs-bg-color,50%);
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-text-fill: white;
+    -fx-text-fill: text-color;
     -fx-opacity: 0.9;
 }
 
