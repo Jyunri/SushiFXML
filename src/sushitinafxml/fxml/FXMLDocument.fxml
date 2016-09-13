@@ -52,7 +52,7 @@
                                  </HBox.margin>
                               </Text>
                               <TextField fx:id="tfTelefone" prefHeight="31.0" prefWidth="342.0" promptText="Ex:1239515661" />
-                              <Button mnemonicParsing="false" onAction="#buscarCliente" text="Buscar" />
+                              <Button mnemonicParsing="false" text="Buscar" />
                            </children>
                            <padding>
                               <Insets left="10.0" top="10.0" />
@@ -68,7 +68,7 @@
                                     <Insets top="3.0" />
                                  </HBox.margin>
                               </Text>
-                              <TextField fx:id="tfCodigoCliente" editable="false" prefHeight="31.0" prefWidth="193.0">
+                              <TextField fx:id="tfCodigoCliente" prefHeight="31.0" prefWidth="193.0">
                                  <HBox.margin>
                                     <Insets right="50.0" />
                                  </HBox.margin>
