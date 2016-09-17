@@ -17,186 +17,209 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.5" styleClass="background" stylesheets="@CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
-   <items>
-      <Pane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="tfNovoPedido" mnemonicParsing="false" onAction="#handleButtonAction" text="Novo Pedido" />
-                     </children>
-                  </StackPane>
-                  <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0">
-                     <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                     </children>
-                  </StackPane>
-               </children>
-            </VBox>
-         </children>
-      </Pane>
-      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Cadastro">
-               <content>
-                  <VBox prefHeight="371.0" prefWidth="647.0">
-                     <children>
-                        <HBox spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Telefone">
-                                 <HBox.margin>
-                                    <Insets top="3.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <TextField fx:id="tfTelefone" prefHeight="31.0" prefWidth="342.0" promptText="Ex:1239515661" />
-                              <Button mnemonicParsing="false" text="Buscar" />
-                           </children>
-                           <padding>
-                              <Insets left="10.0" top="10.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Código do Cliente" wrappingWidth="125.78581237792969" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets top="3.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <TextField fx:id="tfCodigoCliente" prefHeight="31.0" prefWidth="193.0">
-                                 <HBox.margin>
-                                    <Insets right="50.0" />
-                                 </HBox.margin>
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </TextField>
-                           </children>
-                           <padding>
-                              <Insets left="10.0" top="10.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets left="10.0" top="80.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="20.0" layoutY="20.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Nome" wrappingWidth="51.69140625">
-                                 <HBox.margin>
-                                    <Insets top="3.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Region prefHeight="31.0" prefWidth="75.0" />
-                              <TextField fx:id="tfNome" prefHeight="31.0" prefWidth="398.0" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets right="50.0" />
-                                 </HBox.margin>
-                              </TextField>
-                           </children>
-                           <padding>
-                              <Insets left="10.0" top="10.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="20.0" layoutY="20.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Endereço" wrappingWidth="75.07470703125">
-                                 <HBox.margin>
-                                    <Insets top="3.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Region prefHeight="31.0" prefWidth="41.0" />
-                              <TextField fx:id="tfEndereco" prefHeight="31.0" prefWidth="388.0" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets right="50.0" />
-                                 </HBox.margin>
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </TextField>
-                           </children>
-                           <padding>
-                              <Insets left="10.0" top="10.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox spacing="10.0">
-                           <children>
-                              <Region prefHeight="53.0" prefWidth="158.0" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btConfirmar" mnemonicParsing="false" prefHeight="31.0" prefWidth="156.0" text="Confirmar">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#limparCampos" prefHeight="31.0" prefWidth="150.0" text="Limpar">
-                                 <HBox.margin>
-                                    <Insets right="50.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="50.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </content>
+<SplitPane dividerPositions="0.5" styleClass="background" stylesheets="@../CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
+    <items>
+        <Pane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <Button fx:id="tfNovoPedido" mnemonicParsing="false" onAction="#handleButtonAction" text="Novo Pedido" />
+                            </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <Button mnemonicParsing="false" text="Button" />
+                            </children>
+                        </StackPane>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Cadastro" fx:id="tbCliente" >
+                    <content>
+                        <VBox fx:id="vbInicio" prefHeight="371.0" prefWidth="647.0">
+                            <children>
+                                <Button text="Novo Cliente" onAction="#criaCliente" ></Button>
+                                <Button text="Cliente Já Cadastrado" onAction="#loadSearch"  ></Button>
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="371.0" prefWidth="647.0" fx:id="defaultContent" >
+                            <children>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Telefone">
+                                            <HBox.margin>
+                                                <Insets top="3.0" />
+                                            </HBox.margin>
+                                        </Text>
+                                        <TextField fx:id="tfTelefone" prefHeight="31.0" prefWidth="342.0" promptText="Ex:1239515661" />
+                                        <Button mnemonicParsing="false" onAction="#buscarCliente" text="Buscar" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="10.0" top="10.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                
+                                <Label text = "Resultado" ></Label>
+                                <VBox>
+                                    <children>
+                                        
+                                        
+                                    </children>
+                                </VBox>
+                                
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Código do Cliente" wrappingWidth="125.78581237792969" HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets top="3.0" />
+                                            </HBox.margin>
+                                        </Text>
+                                        <TextField fx:id="tfCodigoCliente" editable="false" prefHeight="31.0" prefWidth="193.0">
+                                            <HBox.margin>
+                                                <Insets right="50.0" />
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets left="10.0" />
+                                            </padding>
+                                        </TextField>
+                                    </children>
+                                    <padding>
+                                        <Insets left="10.0" top="10.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="80.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox layoutX="20.0" layoutY="20.0" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Nome" wrappingWidth="51.69140625">
+                                            <HBox.margin>
+                                                <Insets top="3.0" />
+                                            </HBox.margin>
+                                        </Text>
+                                        <Region prefHeight="31.0" prefWidth="75.0" />
+                                        <TextField fx:id="tfNome" prefHeight="31.0" prefWidth="398.0" HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets right="50.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                    </children>
+                                    <padding>
+                                        <Insets left="10.0" top="10.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets left="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox layoutX="20.0" layoutY="20.0" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Endereço" wrappingWidth="75.07470703125">
+                                            <HBox.margin>
+                                                <Insets top="3.0" />
+                                            </HBox.margin>
+                                        </Text>
+                                        <Region prefHeight="31.0" prefWidth="41.0" />
+                                        <TextField fx:id="tfEndereco" prefHeight="31.0" prefWidth="388.0" HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets right="50.0" />
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets left="10.0" />
+                                            </padding>
+                                        </TextField>
+                                    </children>
+                                    <padding>
+                                        <Insets left="10.0" top="10.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets left="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Region prefHeight="53.0" prefWidth="158.0" HBox.hgrow="ALWAYS" />
+                                        <Button fx:id="btConfirmar" mnemonicParsing="false" prefHeight="31.0" prefWidth="156.0" text="Confirmar">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button mnemonicParsing="false" onAction="#limparCampos" prefHeight="31.0" prefWidth="150.0" text="Limpar">
+                                            <HBox.margin>
+                                                <Insets right="50.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button mnemonicParsing="false" onAction="#loadInicio" prefHeight="31.0" prefWidth="150.0" text="Voltar">
+                                            <HBox.margin>
+                                                <Insets right="50.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="50.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                        
+                              
+                            </children>
+                        </VBox>
+                    </content>
             
                 </Tab>
-          <Tab text="Pedido">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <HBox prefHeight="180.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#adicionarItem" text="Adicionar item" />
-                           </children>
-                           <padding>
-                              <Insets left="20.0" top="20.0" />
-                           </padding>
-                        </HBox>
-                     </center>
-                     <top>
-                        <VBox BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </BorderPane.margin>
-                           <children>
-                              <Label fx:id="lbCarrinho" text="Carrinho">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <GridPane fx:id="gridCarrinho" prefHeight="179.0" prefWidth="600.0" styleClass="grid-pane">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Text" wrappingWidth="43.708335876464844" />
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </VBox>
-                     </top>
-                  </BorderPane>
-               </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-   </items>
+                <Tab text="Pedido">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <center>
+                                <HBox prefHeight="180.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#adicionarItem" text="Adicionar item" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="20.0" top="20.0" />
+                                    </padding>
+                                </HBox>
+                            </center>
+                            <top>
+                                <VBox BorderPane.alignment="CENTER">
+                                    <BorderPane.margin>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </BorderPane.margin>
+                                    <children>
+                                        <Label fx:id="lbCarrinho" text="Carrinho">
+                                            <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                        <GridPane fx:id="gridCarrinho" prefHeight="179.0" prefWidth="600.0" styleClass="grid-pane">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Text" wrappingWidth="43.708335876464844" />
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </VBox>
+                            </top>
+                        </BorderPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </items>
 </SplitPane>
