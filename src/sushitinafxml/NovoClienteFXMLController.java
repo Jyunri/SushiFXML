@@ -5,7 +5,15 @@ package sushitinafxml;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,18 +50,87 @@ public class NovoClienteFXMLController implements Initializable {
     }
 
     @FXML
-    private void cadastrarCliente(ActionEvent event) {
+    private int cadastrarCliente(ActionEvent event) throws IOException {
+        if (!verificaCamposObrigatorios()) {
+            System.out.println("Falta preencher!");
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Campos Incompletos!");
+            alert.setHeaderText(null);
+            alert.setContentText("Preencha todos os campos obrigatórios!");
+            alert.showAndWait();
+            return -1;
+        }
+
+        if (telefoneExistente()) {
+            System.out.println("Telefone ja existe");
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Esse telefone ja esta cadastrado!");
+            alert.showAndWait();
+            return -1;
+        }
+
         System.out.println("Cliente Criado");
+        String filename = "ClienteCSV.csv";
+        // feed in your array (or convert your data to an array)
+        try (CSVWriter writer = new CSVWriter(new FileWriter(filename, true))) {
+            // feed in your array (or convert your data to an array)
+            String codigo = String.valueOf(Files.lines(Paths.get(filename)).count() + 1);
+            String telefone = tfTelefone.getText();
+            String nome = tfNome.getText();
+            String endereco = tfEndereco.getText();
+            String numero = tfNumero.getText();
+            String complemento = tfComplemento.getText();
+            String bairro = tfBairro.getText();
+            String obs = taObservacoes.getText();
+            String[] entries = {codigo, telefone, nome, endereco, numero, complemento, bairro, obs};
+            writer.writeNext(entries);
+        }
+
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Cliente Criado");
         alert.setHeaderText(null);
         alert.setContentText("Finalize o pedido na aba *Pedido* ");
         alert.showAndWait();
-        
+
         Stage stage = (Stage) btCadastrar.getScene().getWindow();
         // do what you have to do
         stage.close();
         //label.setText("Hello World!");
+        return 0;
+    }
+
+    private boolean verificaCamposObrigatorios() {
+        if (tfTelefone.getText().isEmpty()) {
+            return false;
+        }
+        if (tfNome.getText().isEmpty()) {
+            return false;
+        }
+        if (tfEndereco.getText().isEmpty()) {
+            return false;
+        }
+        if (tfNumero.getText().isEmpty()) {
+            return false;
+        }
+        if (tfBairro.getText().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean telefoneExistente() throws FileNotFoundException, IOException {
+        String novoTelefone = tfTelefone.getText();
+        CSVReader reader = new CSVReader(new FileReader("ClienteCSV.csv"));
+        String[] nextLine;
+        while ((nextLine = reader.readNext()) != null) {
+            // nextLine[] is an array of values from the line
+            if (nextLine[1].equals(novoTelefone)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @FXML

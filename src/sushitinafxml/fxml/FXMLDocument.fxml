@@ -7,6 +7,8 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -49,7 +51,7 @@
             <tabs>
                 <Tab fx:id="tbCliente" text="Cadastro">
                     <content>                                                       
-                        <VBox fx:id="vbInicio" prefHeight="371.0" prefWidth="647.0">
+                        <VBox fx:id="vbInicio" prefHeight="371.0" prefWidth="647.0" spacing="30.0">
                             <children>
                                 <Button onAction="#criaCliente" text="Novo Cliente" />
                                 <Button onAction="#loadSearch" text="Cliente Já Cadastrado" />
@@ -85,7 +87,8 @@
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -95,75 +98,95 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
-                                            <children>
-                                                <HBox prefHeight="30.0" prefWidth="118.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                            <children>                                                
+                                                <Label text="Resultado" />
+                                                <Label text="Telefone*" GridPane.rowIndex="2">
+                                                    <GridPane.margin>
+                                                        <Insets />
+                                                    </GridPane.margin>
+                                                </Label>
+                                                <Label text="Nome*" GridPane.rowIndex="3" />
+                                                <Label text="Endereço*" GridPane.rowIndex="4" />
+                                                <Label prefHeight="17.0" prefWidth="124.0" text="Observações" GridPane.rowIndex="6">
+                                                    <GridPane.margin>
+                                                        <Insets top="20.0" />
+                                                    </GridPane.margin>
+                                                </Label>
+                                                
+                                                <TextField fx:id="tfResTelefone" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="tfResNome" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                                                    <GridPane.margin>
+                                                        <Insets right="10.0" />
+                                                    </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfResEndereco" editable="false" prefHeight="27.0" prefWidth="307.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                                                <HBox prefHeight="30.0" prefWidth="118.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                                     <children>
-                                                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="129.0" text="nº">
+                                                        <Label alignment="CENTER" minWidth="-Infinity" prefHeight="22.0" prefWidth="26.0" text="nº*">
                                                             <opaqueInsets>
                                                                 <Insets />
                                                             </opaqueInsets>
                                                             <padding>
-                                                                <Insets left="5.0" top="5.0" />
+                                                                <Insets top="5.0" />
+                                                            </padding>
+                                                            <HBox.margin>
+                                                                <Insets left="10.0" />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <TextField fx:id="tfResNumero" editable="false">
+                                                            <HBox.margin>
+                                                                <Insets left="10.0" right="10.0" />
+                                                            </HBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                    <GridPane.margin>
+                                                        <Insets left="5.0" />
+                                                    </GridPane.margin>
+                                                </HBox>
+                                                <Label text="Comp." GridPane.rowIndex="5" />
+                                                <TextField fx:id="tfResComp" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                                                    <children>
+                                                        <Label prefHeight="22.0" prefWidth="68.0" text="Bairro*">
+                                                            <padding>
+                                                                <Insets top="5.0" />
                                                             </padding>
                                                         </Label>
-                                                        <TextField fx:id="tfNumero" editable="false" promptText="55">
+                                                        <TextField fx:id="tfResBairro" editable="false" prefWidth="117.0">
                                                             <HBox.margin>
                                                                 <Insets right="10.0" />
                                                             </HBox.margin>
                                                         </TextField>
                                                     </children>
-                                                </HBox>
-                                                <Label text="Telefone" GridPane.rowIndex="1">
-                                                    <GridPane.margin>
-                                                        <Insets />
-                                                    </GridPane.margin>
-                                                </Label>
-                                                <Label text="Nome:" GridPane.rowIndex="2" />
-                                                <Label text="Endereço" GridPane.rowIndex="3" />
-                                                <Label prefHeight="17.0" prefWidth="124.0" text="Observações" GridPane.rowIndex="5">
-                                                    <GridPane.margin>
-                                                        <Insets top="20.0" />
-                                                    </GridPane.margin>
-                                                </Label>
-                                                <TextArea fx:id="taObservacoes" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Perto da galeria 12 horas/Cliente muito rigoroso" GridPane.columnSpan="4" GridPane.rowIndex="6" GridPane.rowSpan="2">
-                                                    <GridPane.margin>
-                                                        <Insets left="10.0" right="10.0" top="20.0" />
-                                                    </GridPane.margin>
-                                                </TextArea>
-                                                <TextField fx:id="tfResTelefone" editable="false" promptText="Ex: 39627451" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField fx:id="tfResNome" editable="false" promptText="Ex: Jonathan Suenaga" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2">
-                                                    <GridPane.margin>
-                                                        <Insets right="10.0" />
-                                                    </GridPane.margin>
-                                                </TextField>
-                                                <TextField fx:id="tfResEndereco" editable="false" prefHeight="27.0" prefWidth="264.0" promptText="Rua Joao Teodoro" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                                                <Label text="Comp." GridPane.rowIndex="4" />
-                                                <TextField fx:id="tfComplemento" editable="false" promptText="Ex: Casa 20" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4">
-                                                    <children>
-                                                        <Label prefHeight="22.0" prefWidth="68.0" text="Bairro">
-                                                            <padding>
-                                                                <Insets top="5.0" />
-                                                            </padding>
-                                                        </Label>
-                                                        <TextField fx:id="tfBairro" editable="false" prefWidth="117.0" promptText="Ex: Centro">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin></TextField>
-                                                    </children>
                                                     <GridPane.margin>
                                                         <Insets left="40.0" />
                                                     </GridPane.margin>
                                                 </HBox>
-                                    <Label text="Resultado" />
-                                    <Button mnemonicParsing="false" text="Editar" GridPane.columnIndex="3" />
+                                                <TextArea fx:id="taResObservacoes" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="7" GridPane.rowSpan="2">
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0" right="10.0" top="20.0" />
+                                                    </GridPane.margin>
+                                                </TextArea>
+                                                
+                                                <Button fx:id="btEditar" mnemonicParsing="false" onAction="#editarResultados" text="Editar" GridPane.columnIndex="2">
+                                                    <GridPane.margin>
+                                                        <Insets left="30.0" />
+                                                    </GridPane.margin>
+                                                </Button>
+                                                <Button fx:id="btFinalizar" mnemonicParsing="false" onAction="#finalizaEdicao" text="Finalizar" GridPane.columnIndex="3">
+                                                    <GridPane.margin>
+                                                        <Insets left="5.0" />
+                                                    </GridPane.margin>
+                                                </Button>
+                                                <Label text="Código do Cliente" GridPane.rowIndex="1" />
+                                                <TextField fx:id="tfCodigoCliente" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                             </padding>
-                                 <VBox.margin>
-                                    <Insets left="20.0" right="50.0" top="20.0" />
-                                 </VBox.margin>
+                                            <VBox.margin>
+                                                <Insets left="20.0" right="50.0" top="20.0" />
+                                            </VBox.margin>
                                         </GridPane>
                                         
                                         <HBox spacing="10.0">
@@ -220,20 +243,20 @@
                                                 <Insets bottom="10.0" />
                                             </VBox.margin>
                                         </Label>
-                                        <GridPane fx:id="gridCarrinho" prefHeight="179.0" prefWidth="600.0" styleClass="grid-pane">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Text" wrappingWidth="43.708335876464844" />
-                                            </children>
-                                        </GridPane>
+                                        <ScrollPane>
+                                 <content>
+                                    <TableView fx:id="tvCarrinho" prefHeight="200.0" prefWidth="1000.0">
+                                      <columns>
+                                        <TableColumn fx:id="tcCodigo" prefWidth="75.0" text="Código" />
+                                        <TableColumn fx:id="tcDescricao" prefWidth="118.0" text="Descrição" />
+                                          <TableColumn prefWidth="107.0" text="Preço unitário" />
+                                          <TableColumn minWidth="0.0" prefWidth="64.0" text="Qtd" />
+                                          <TableColumn prefWidth="135.0" text="Preço FInal" />
+                                          <TableColumn prefWidth="90.0" text="Obs" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                                        </ScrollPane>
                                     </children>
                                 </VBox>
                             </top>
