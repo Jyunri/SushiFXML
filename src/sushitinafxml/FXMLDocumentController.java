@@ -71,12 +71,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableView<Pedido> tvCarrinho;
     
-    @FXML
-    private TableColumn<Pedido,Integer> tcCodigo;
-    
-    @FXML
-    private TableColumn<Pedido,String> tcDescricao;
-    
+    @FXML   private TableColumn<Pedido,Integer> tcCodigo;
+    @FXML   private TableColumn<Pedido,String> tcDescricao;
+    @FXML   private TableColumn<Pedido,Float> tcPrecoUnitario;
+    @FXML   private TableColumn<Pedido,Integer> tcQuantidade;
+    @FXML   private TableColumn<Pedido,Float> tcPrecoFinal;
+    @FXML   private TableColumn<Pedido,String> tcObservacao;
+
+
     int row = 0;
 
     @FXML
@@ -196,7 +198,22 @@ public class FXMLDocumentController implements Initializable {
         
         //teste
         tcCodigo.setCellValueFactory(
-            new PropertyValueFactory<Pedido,Integer>("Código")
+            new PropertyValueFactory("codigoItem")
+        );
+        tcDescricao.setCellValueFactory(
+            new PropertyValueFactory("descricao")
+        );
+        tcPrecoUnitario.setCellValueFactory(
+            new PropertyValueFactory("precoUnitario")
+        );
+        tcQuantidade.setCellValueFactory(
+            new PropertyValueFactory("codigoItem")
+        );
+        tcPrecoFinal.setCellValueFactory(
+            new PropertyValueFactory("precoFinal")
+        );
+        tcObservacao.setCellValueFactory(
+            new PropertyValueFactory("observacao")
         );
         tvCarrinho.setItems(getListaPedidos());
         
@@ -306,8 +323,8 @@ public class FXMLDocumentController implements Initializable {
 
     public ObservableList<Pedido> getListaPedidos() {
         ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
-        pedidos.add(new Pedido(1, 3, "este", "obs", 30));
-        pedidos.add(new Pedido(2, 5, "teste2", "obs2", 10));
+        pedidos.add(new Pedido(1, "Rodizio", 30, 2, "duas"));
+        pedidos.add(new Pedido(2, "Fruta", 2, 5, "maca"));
         
         return pedidos;
     }

@@ -12,15 +12,15 @@ package sushitinafxml;
 public class Pedido {
     int codigoItem, quantidade;
     String descricao, observacao;
-    float precoUnitario, precoTotal;
+    float precoUnitario, precoFinal;
 
-    public Pedido(int codigoItem, int quantidade, String descricao, String observacao, float precoUnitario) {
+    public Pedido(int codigoItem, String descricao, float precoUnitario, int quantidade, String observacao) {
         this.codigoItem = codigoItem;
         this.quantidade = quantidade;
         this.descricao = descricao;
         this.observacao = observacao;
         this.precoUnitario = precoUnitario;
-        this.precoTotal = precoUnitario*quantidade;
+        this.precoFinal = precoUnitario*quantidade;
     }
 
     public int getCodigoItem() {
@@ -63,11 +63,11 @@ public class Pedido {
         this.precoUnitario = precoUnitario;
     }
 
-    public float getPrecoTotal() {
-        return precoTotal;
+    public float getPrecoFinal() {
+        return precoFinal;
     }
 
-    public void setPrecoTotal(float precoTotal) {
-        this.precoTotal = precoTotal;
+    public void setPrecoFinal(float precoTotal) {
+        this.precoFinal = precoTotal;
     }
 }

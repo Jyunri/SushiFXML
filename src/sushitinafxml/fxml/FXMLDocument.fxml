@@ -249,10 +249,10 @@
                                       <columns>
                                         <TableColumn fx:id="tcCodigo" prefWidth="75.0" text="Código" />
                                         <TableColumn fx:id="tcDescricao" prefWidth="118.0" text="Descrição" />
-                                          <TableColumn prefWidth="107.0" text="Preço unitário" />
-                                          <TableColumn minWidth="0.0" prefWidth="64.0" text="Qtd" />
-                                          <TableColumn prefWidth="135.0" text="Preço FInal" />
-                                          <TableColumn prefWidth="90.0" text="Obs" />
+                                          <TableColumn fx:id="tcPrecoUnitario"  prefWidth="107.0" text="Preço unitário" />
+                                          <TableColumn fx:id="tcQuantidade" minWidth="0.0" prefWidth="64.0" text="Qtd" />
+                                          <TableColumn fx:id="tcPrecoFinal" prefWidth="135.0" text="Preço Final" />
+                                          <TableColumn fx:id="tcObservacao" prefWidth="90.0" text="Obs" />
                                       </columns>
                                     </TableView>
                                  </content>
