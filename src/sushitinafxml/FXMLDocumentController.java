@@ -70,16 +70,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TableView<Pedido> tvCarrinho;
-    
-    @FXML   private TableColumn<Pedido,Integer> tcCodigo;
-    @FXML   private TableColumn<Pedido,String> tcDescricao;
-    @FXML   private TableColumn<Pedido,Float> tcPrecoUnitario;
-    @FXML   private TableColumn<Pedido,Integer> tcQuantidade;
-    @FXML   private TableColumn<Pedido,Float> tcPrecoFinal;
-    @FXML   private TableColumn<Pedido,String> tcObservacao;
 
-
-    int row = 0;
+    @FXML
+    private TableColumn<Pedido, Integer> tcCodigo;
+    @FXML
+    private TableColumn<Pedido, String> tcDescricao;
+    @FXML
+    private TableColumn<Pedido, Float> tcPrecoUnitario;
+    @FXML
+    private TableColumn<Pedido, Integer> tcQuantidade;
+    @FXML
+    private TableColumn<Pedido, Float> tcPrecoFinal;
+    @FXML
+    private TableColumn<Pedido, String> tcObservacao;
+    ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
 
     @FXML
     private void criaCliente() {
@@ -195,28 +199,28 @@ public class FXMLDocumentController implements Initializable {
         // TODO
         tbCliente.setContent(vbInicio);
         btFinalizar.setDisable(true);
-        
+
         //teste
         tcCodigo.setCellValueFactory(
-            new PropertyValueFactory("codigoItem")
+                new PropertyValueFactory("codigoItem")
         );
         tcDescricao.setCellValueFactory(
-            new PropertyValueFactory("descricao")
+                new PropertyValueFactory("descricao")
         );
         tcPrecoUnitario.setCellValueFactory(
-            new PropertyValueFactory("precoUnitario")
+                new PropertyValueFactory("precoUnitario")
         );
         tcQuantidade.setCellValueFactory(
-            new PropertyValueFactory("codigoItem")
+                new PropertyValueFactory("codigoItem")
         );
         tcPrecoFinal.setCellValueFactory(
-            new PropertyValueFactory("precoFinal")
+                new PropertyValueFactory("precoFinal")
         );
         tcObservacao.setCellValueFactory(
-            new PropertyValueFactory("observacao")
+                new PropertyValueFactory("observacao")
         );
-        tvCarrinho.setItems(getListaPedidos());
-        
+        tvCarrinho.setItems(pedidos);
+
         //Aba de pedidos
 //        gridCarrinho.add(new Label("Código"), 0, 0);
 //        gridCarrinho.add(new Label("Descrição"), 1, 0);
@@ -322,15 +326,17 @@ public class FXMLDocumentController implements Initializable {
     }
 
     public ObservableList<Pedido> getListaPedidos() {
-        ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
-        pedidos.add(new Pedido(1, "Rodizio", 30, 2, "duas"));
-        pedidos.add(new Pedido(2, "Fruta", 2, 5, "maca"));
-        
+//        ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
+//        pedidos.add(new Pedido(1, "Rodizio", 30, 2, "duas"));
+//        pedidos.add(new Pedido(2, "Fruta", 2, 5, "maca"));
+
         return pedidos;
     }
 
     public void adicionaCarrinho(String codigo, String descricao, String preco, String quantidade, String obs) {
-        row++;
+          pedidos.add(new Pedido(1, "Rodizio", 30, 2, "duas"));
+          pedidos.add(new Pedido(2, "Fruta", 2, 5, "maca"));
+          //tvCarrinho.setItems(pedidos);
 //        gridCarrinho.add(new Label(codigo), 0, row);
 //        gridCarrinho.add(new Label(descricao), 1, row);
 //        gridCarrinho.add(new Label(preco), 2, row);
