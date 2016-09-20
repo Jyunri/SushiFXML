@@ -9,106 +9,110 @@ and open the template in the editor.
 */
 
 * {
-    btn-hover-color: #AC3E3E;
-    btn-pressed-color: #8D0000;
-    
-    
-    objs-bg-color: #D0BDBD;
-    border-color: #BD8979;
+    objs-bg-color: white;
+    borders-color: #373d49;
     text-color: #000000;
     
-    txf-bg-color-focused: #AC3E3E;
-}
-
-.background {
-    -fx-background-color: objs-bg-color;
-}
-
-.text {
-    -fx-font-family: "Segoe UI Light", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: text-color;
-    -fx-fill: text-color;
+    txf-bg-color-focused: #595959;
+    text-color-focused: #e6e6e6;
 }
 
 .label {
-    -fx-opacity: 0.6;
+    -fx-text-fill: #1f2429;
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
 }
 
-.label-bright {
-    -fx-opacity: 1;
+.pane {
+     -fx-base: objs-bg-color;
+     -fx-text-fill: #1f2429;
+     -fx-fill: #1f2429;
 }
 
-.label-header .text {
-    -fx-font-size: 20pt;
-    -fx-opacity: 1;
-}
+.tab-pane .tab {
+    -fx-background-color:
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        radial-gradient(center 50% 50%, radius 100%, rgba(114,131,148, .9), rgba(255,255,255, 0));
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .6), 5, .0, 0, 1);
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    
 
-.tab-pane {
-    -fx-base: transparent, derive(objs-bg-color,20%);
-    -fx-control-inner-background: objs-bg-color;
-    -fx-background-color: objs-bg-color;
-    -fx-padding: 5;
 }
 
 .tab-pane .tab:selected {
     -fx-background-color: objs-bg-color;
-    
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
 }
 
 .split-pane:horizontal > .split-pane-divider {
-    -fx-border-color: objs-bg-color objs-bg-color objs-bg-color objs-bg-color;
-    -fx-background-color: transparent, derive(objs-bg-color,20%);
-}
-
-.split-pane {
-    -fx-padding: 1 0 0 0;
+    -fx-background-color:
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        radial-gradient(center 50% 50%, radius 100%, rgba(114,131,148, .9), rgba(255,255,255, 0));
+    -fx-border-style: dashed;
 }
 
 .text-field, .text-area {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: border-color;
-    -fx-border-width: 2;
-    -fx-text-fill: text-color;
-    /*-fx-background-insets: 0 0 0 0, 0, 1, 2;*/
-    -fx-border-radius: 5px;
-    -fx-background-color: objs-bg-color;
-    -fx-opacity: 0.8;
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148, .9), rgba(255,255,255, 0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .6), 5, .0, 0, 1);
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
 }
 
-.text-field:focused, .text-area:focused {
-    -fx-background-color: txf-bg-color-focused;
+.text-area {
+    -fx-text-fill: linear-gradient(black, #d0d0d0);
 }
 
 .button {
-    -fx-padding: 5 22 5 22;   
-    -fx-border-color: border-color;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: objs-bg-color;
-    -fx-text-fill: text-color;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-    -fx-border-radius: 5px;
-}
-
-.button:hover {
-    -fx-background-color: btn-hover-color;
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148, .9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .6), 5, .0, 0, 1);
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
 }
 
 .button:pressed {
-  -fx-background-color: btn-pressed-color;
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        radial-gradient(center 50% 50%, radius 50%, rgba(114,131,148, .9), rgba(255,255,255, 0));
 }
 
 .button:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: objs-bg-color;
-    -fx-text-fill: text-color;
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148, .1), rgba(255,255,255, .2));
+    -fx-text-fill: linear-gradient(gray, #d0d0d0);
 }
 
-.grid-pane, .anchor-pane {
-    -fx-grid-lines-visible: true;
+.grid-pane {
+    -fx-grid-lines-visible: false;
     -fx-padding: 5 22 5 22;
-    -fx-border-color: border-color;
+    -fx-border-color:
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148, .9), rgba(255,255,255,0));;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .6), 5, .0, 0, 1);
+    -fx-border-radius: 3;
     -fx-border-width: 2;
     -fx-text-alignment: center;
     -fx-wrap-text: true;

@@ -47,13 +47,13 @@
                             <children>
                                 <HBox spacing="10.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Telefone">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Telefone" wrappingWidth="123.7646484375">
                                             <HBox.margin>
                                                 <Insets top="3.0" />
                                             </HBox.margin>
                                         </Text>
-                                        <TextField fx:id="tfTelefone" prefHeight="31.0" prefWidth="342.0" promptText="Ex:1239515661" />
-                                        <Button mnemonicParsing="false" text="Buscar" />
+                                        <TextField fx:id="tfTelefone" prefHeight="36.0" prefWidth="292.0" promptText="Ex:1239515661" />
+                                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="85.0" text="Buscar" />
                                     </children>
                                     <padding>
                                         <Insets left="10.0" top="10.0" />
@@ -64,7 +64,7 @@
                                 </HBox>
                                 <HBox spacing="10.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Código do Cliente" wrappingWidth="125.78581237792969" HBox.hgrow="ALWAYS">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Código do Cliente" wrappingWidth="125.78581237792969" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
                                                 <Insets top="3.0" />
                                             </HBox.margin>
@@ -87,7 +87,7 @@
                                 </HBox>
                                 <HBox layoutX="20.0" layoutY="20.0" spacing="10.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Nome" wrappingWidth="51.69140625">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Nome" wrappingWidth="51.69140625">
                                             <HBox.margin>
                                                 <Insets top="3.0" />
                                             </HBox.margin>
@@ -108,7 +108,7 @@
                                 </HBox>
                                 <HBox layoutX="20.0" layoutY="20.0" spacing="10.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Endereço" wrappingWidth="75.07470703125">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Endereço" wrappingWidth="75.07470703125">
                                             <HBox.margin>
                                                 <Insets top="3.0" />
                                             </HBox.margin>
@@ -130,9 +130,9 @@
                                         <Insets left="10.0" />
                                     </VBox.margin>
                                 </HBox>
-                                <HBox spacing="10.0">
+                                <HBox prefHeight="59.0" prefWidth="590.0" spacing="10.0">
                                     <children>
-                                        <Region prefHeight="53.0" prefWidth="158.0" HBox.hgrow="ALWAYS" />
+                                        <Region prefHeight="36.0" prefWidth="167.0" HBox.hgrow="ALWAYS" />
                                         <Button fx:id="btConfirmar" mnemonicParsing="false" prefHeight="31.0" prefWidth="156.0" text="Confirmar">
                                             <HBox.margin>
                                                 <Insets />
@@ -155,7 +155,7 @@
             
                 <Tab text="Pedido">
                     <content>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" vvalue="1.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="357.0" prefWidth="557.0" vbarPolicy="ALWAYS" vvalue="1.0">
                             <content>
                                 <BorderPane prefHeight="297.0" prefWidth="590.0">
                                     <center>
@@ -190,7 +190,7 @@
                                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Text" wrappingWidth="43.708335876464844" />
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Text" wrappingWidth="43.708335876464844" />
                                                     </children>
                                                 </GridPane>
                                             </children>
