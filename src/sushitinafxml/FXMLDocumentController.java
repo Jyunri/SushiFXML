@@ -84,6 +84,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Pedido, String> tcObservacao;
     ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
+    
+    @FXML 
+    private Button btRemover;
 
     @FXML
     private void criaCliente() {
@@ -334,8 +337,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     public void adicionaCarrinho(String codigo, String descricao, String preco, String quantidade, String obs) {
-          pedidos.add(new Pedido(1, "Rodizio", 30, 2, "duas"));
-          pedidos.add(new Pedido(2, "Fruta", 2, 5, "maca"));
+          pedidos.add(new Pedido(Integer.valueOf(codigo), descricao, Float.valueOf(preco),Integer.valueOf(quantidade), obs));
           //tvCarrinho.setItems(pedidos);
 //        gridCarrinho.add(new Label(codigo), 0, row);
 //        gridCarrinho.add(new Label(descricao), 1, row);
@@ -346,5 +348,12 @@ public class FXMLDocumentController implements Initializable {
 //        gridCarrinho.add(new Button("Editar"), 6, row);
 //        gridCarrinho.add(new Button("Remover"), 7, row);
 
+    }
+    
+    @FXML
+    public void removeCarrinho(){
+        Pedido p = tvCarrinho.getSelectionModel().getSelectedItem();
+        pedidos.remove(p);
+        tvCarrinho.setItems(pedidos);
     }
 }

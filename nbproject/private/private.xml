@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/jonathansuenaga/Dev/JimyGit/SushiFXML/src/sushitinafxml/fxml/FXMLDocument.fxml</file>
-            <file>file:/Users/jonathansuenaga/Dev/JimyGit/SushiFXML/src/sushitinafxml/fxml/AddItem.fxml</file>
-            <file>file:/Users/jonathansuenaga/Dev/JimyGit/SushiFXML/src/sushitinafxml/fxml/ResultadoFXML.fxml</file>
-            <file>file:/Users/jonathansuenaga/Dev/JimyGit/SushiFXML/src/sushitinafxml/AddItemController.java</file>
-            <file>file:/Users/jonathansuenaga/Dev/JimyGit/SushiFXML/src/sushitinafxml/SushiTinaFXML.java</file>
-            <file>file:/Users/jonathansuenaga/Dev/JimyGit/SushiFXML/src/sushitinafxml/FXMLDocumentController.java</file>
-            <file>file:/Users/jonathansuenaga/Dev/JimyGit/SushiFXML/src/sushitinafxml/Pedido.java</file>
+            <file>file:/Users/user/Documents/JyunriGit/SushiFXML/src/sushitinafxml/Pedido.java</file>
+            <file>file:/Users/user/Documents/JyunriGit/SushiFXML/ProdutosCSV.csv</file>
+            <file>file:/Users/user/Documents/JyunriGit/SushiFXML/src/sushitinafxml/fxml/AddItem.fxml</file>
+            <file>file:/Users/user/Documents/JyunriGit/SushiFXML/src/sushitinafxml/fxml/FXMLDocument.fxml</file>
+            <file>file:/Users/user/Documents/JyunriGit/SushiFXML/src/sushitinafxml/SushiTinaFXML.java</file>
+            <file>file:/Users/user/Documents/JyunriGit/SushiFXML/src/sushitinafxml/CSS/stylesheets.css</file>
+            <file>file:/Users/user/Documents/JyunriGit/SushiFXML/src/sushitinafxml/AddItemController.java</file>
+            <file>file:/Users/user/Documents/JyunriGit/SushiFXML/src/sushitinafxml/NovoClienteFXMLController.java</file>
+            <file>file:/Users/user/Documents/JyunriGit/SushiFXML/src/sushitinafxml/FXMLDocumentController.java</file>
         </group>
     </open-files>
 </project-private>

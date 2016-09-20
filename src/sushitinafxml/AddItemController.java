@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -108,6 +109,11 @@ public class AddItemController implements Initializable {
             return -1;
         }
         mainController.adicionaCarrinho(tfCodigoItem.getText(),tfNomeItem.getText(),tfPreco.getText(),tfQuantidade.getText(),taObservacoes.getText());
+        
+        Stage stage = (Stage) btAdicionar.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+        
         return 0;
     }
     
