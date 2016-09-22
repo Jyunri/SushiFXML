@@ -70,4 +70,13 @@ public class Pedido {
     public void setPrecoFinal(float precoTotal) {
         this.precoFinal = precoTotal;
     }
+    
+    public void updatePrecoFinal(){
+        this.precoFinal = precoUnitario*quantidade;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "codigoItem=" + codigoItem + ", quantidade=" + quantidade + ", descricao=" + descricao + ", observacao=" + observacao + ", precoUnitario=" + precoUnitario + ", precoFinal=" + precoFinal + '}';
+    }
 }

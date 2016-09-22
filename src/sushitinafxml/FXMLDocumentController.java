@@ -28,15 +28,21 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.util.converter.IntegerStringConverter;
 
 /**
  *
@@ -44,6 +50,13 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable {
 
+    //declarations
+    @FXML
+    private SplitPane spRoot;
+    
+    @FXML
+    private TabPane tpNovoPedido;
+    
     @FXML
     private Label lbCarrinho, lbTeste;
 
@@ -83,9 +96,10 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Pedido, Float> tcPrecoFinal;
     @FXML
     private TableColumn<Pedido, String> tcObservacao;
-    ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
     
-    @FXML 
+    ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
+
+    @FXML
     private Button btRemover;
 
     @FXML
@@ -200,10 +214,15 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+        loadBemVindo();
+
         tbCliente.setContent(vbInicio);
         btFinalizar.setDisable(true);
 
-        //teste
+        //tabela de pedidos
+        tvCarrinho.setEditable(true);
+
         tcCodigo.setCellValueFactory(
                 new PropertyValueFactory("codigoItem")
         );
@@ -214,7 +233,7 @@ public class FXMLDocumentController implements Initializable {
                 new PropertyValueFactory("precoUnitario")
         );
         tcQuantidade.setCellValueFactory(
-                new PropertyValueFactory("codigoItem")
+                new PropertyValueFactory("quantidade")
         );
         tcPrecoFinal.setCellValueFactory(
                 new PropertyValueFactory("precoFinal")
@@ -224,18 +243,30 @@ public class FXMLDocumentController implements Initializable {
         );
         tvCarrinho.setItems(pedidos);
 
-        //Aba de pedidos
-//        gridCarrinho.add(new Label("Código"), 0, 0);
-//        gridCarrinho.add(new Label("Descrição"), 1, 0);
-//        gridCarrinho.add(new Label("Preço/unidade"), 2, 0);
-//        gridCarrinho.add(new Label("Quantidade"), 3, 0);
-//        gridCarrinho.add(new Label("Preço Total"), 4, 0);
-//        gridCarrinho.add(new Label("Obs"), 5, 0);
+        //Tornar Quantidade e Observacao Editavel
+        tcQuantidade.setCellFactory(TextFieldTableCell.<Pedido, Integer>forTableColumn(new IntegerStringConverter()));
+
+        tcQuantidade.setOnEditCommit(e -> {
+            tvCarrinho.getItems().get(e.getTablePosition().getRow()).setQuantidade(e.getNewValue());
+            tvCarrinho.getItems().get(e.getTablePosition().getRow()).updatePrecoFinal();
+            tvCarrinho.refresh();
+        });
+    }
+
+    void loadBemVindo() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/BemVindoFXML.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            spRoot.getItems().set(1, root1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //tela Inicio
     @FXML
     void loadInicio(ActionEvent event) {
+        spRoot.getItems().set(1, tpNovoPedido);
         tbCliente.setContent(vbInicio);
     }
 
@@ -329,31 +360,23 @@ public class FXMLDocumentController implements Initializable {
     }
 
     public ObservableList<Pedido> getListaPedidos() {
-//        ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
-//        pedidos.add(new Pedido(1, "Rodizio", 30, 2, "duas"));
-//        pedidos.add(new Pedido(2, "Fruta", 2, 5, "maca"));
-
         return pedidos;
     }
 
     public void adicionaCarrinho(String codigo, String descricao, String preco, String quantidade, String obs) {
-          pedidos.add(new Pedido(Integer.valueOf(codigo), descricao, Float.valueOf(preco),Integer.valueOf(quantidade), obs));
-          //tvCarrinho.setItems(pedidos);
-//        gridCarrinho.add(new Label(codigo), 0, row);
-//        gridCarrinho.add(new Label(descricao), 1, row);
-//        gridCarrinho.add(new Label(preco), 2, row);
-//        gridCarrinho.add(new Label(quantidade), 3, row);
-//        gridCarrinho.add(new Label(String.valueOf(Float.valueOf(preco) * Integer.valueOf(quantidade))), 4, row);
-//        gridCarrinho.add(new Label(obs), 5, row);
-//        gridCarrinho.add(new Button("Editar"), 6, row);
-//        gridCarrinho.add(new Button("Remover"), 7, row);
-
+        pedidos.add(new Pedido(Integer.valueOf(codigo), descricao, Float.valueOf(preco), Integer.valueOf(quantidade), obs));
     }
-    
+
     @FXML
-    public void removeCarrinho(){
+    public void removeCarrinho() {
         Pedido p = tvCarrinho.getSelectionModel().getSelectedItem();
         pedidos.remove(p);
         tvCarrinho.setItems(pedidos);
+    }
+
+    public void listaCarrinho() {
+        for (Pedido p : pedidos) {
+            System.out.println(p);
+        }
     }
 }
