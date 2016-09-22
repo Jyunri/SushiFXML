@@ -258,6 +258,10 @@ public class FXMLDocumentController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/BemVindoFXML.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             spRoot.getItems().set(1, root1);
+
+            //Pedidos
+            pedidos.removeAll(pedidos); //limpa todos os pedidos anteriores
+            tpNovoPedido.getSelectionModel().select(tbCliente); //inicia a Tab selecionando a primeira tab
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -377,6 +381,26 @@ public class FXMLDocumentController implements Initializable {
     public void listaCarrinho() {
         for (Pedido p : pedidos) {
             System.out.println(p);
+        }
+    }
+    
+    @FXML
+    public void finalizaPedido(){
+        
+    }
+    
+    @FXML
+    public void cancelaPedido(){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Cancelar Pedido!");
+        alert.setHeaderText(null);
+        alert.setContentText("Deseja eliminar todos os dados do pedido?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            loadBemVindo();
+        } else {
+            // ... user chose CANCEL or closed the dialog
         }
     }
 }

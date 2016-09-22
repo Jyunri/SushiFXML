@@ -31,7 +31,10 @@ import javafx.stage.Stage;
  * @author jonathansuenaga
  */
 public class NovoClienteFXMLController implements Initializable {
-
+    
+    //Referencia ao Controller Principal
+    FXMLDocumentController fm;
+    
     @FXML
     TextField tfTelefone, tfNome, tfEndereco, tfNumero, tfComplemento, tfBairro;
 
