@@ -219,7 +219,7 @@
                     </content>
             
                 </Tab>
-                <Tab text="Pedido">
+                <Tab fx:id="tbPedido" text="Pedido">
                     <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                             <center>
@@ -264,7 +264,7 @@
                      <bottom>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" text="FInalizar" />
+                              <Button mnemonicParsing="false" onAction="#finalizaPedido" text="Finalizar" />
                               <Button mnemonicParsing="false" onAction="#cancelaPedido" text="Cancelar" />
                            </children>
                            <padding>

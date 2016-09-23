@@ -12,4 +12,9 @@ package sushitinafxml;
 public class Cliente {
     String nome;
     String endereco_simplificado;
+
+    public Cliente(String nome, String endereco_simplificado) {
+        this.nome = nome;
+        this.endereco_simplificado = endereco_simplificado;
+    }
 }

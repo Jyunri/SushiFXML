@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.NovoClienteFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <GridPane prefHeight="346.0" prefWidth="600.0">
         <columnConstraints>
@@ -90,7 +90,7 @@
                </GridPane.margin>
             </TextArea>
             
-            <Button mnemonicParsing="false" fx:id="btCadastrar"  text="Cadastrar" GridPane.columnIndex="2" GridPane.rowIndex="7" onAction="#cadastrarCliente" >
+            <Button fx:id="btCadastrar" mnemonicParsing="false" onAction="#cadastrarCliente" text="Cadastrar" GridPane.columnIndex="2" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets left="50.0" top="50.0" />
                </GridPane.margin>

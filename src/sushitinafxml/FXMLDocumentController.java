@@ -50,13 +50,15 @@ import javafx.util.converter.IntegerStringConverter;
  */
 public class FXMLDocumentController implements Initializable {
 
+    Ticket ticket;
+
     //declarations
     @FXML
     private SplitPane spRoot;
-    
+
     @FXML
     private TabPane tpNovoPedido;
-    
+
     @FXML
     private Label lbCarrinho, lbTeste;
 
@@ -73,7 +75,7 @@ public class FXMLDocumentController implements Initializable {
     private Button btNovoCliente, btConfirmar, btAdicionarItem, btTeste, btEditar, btFinalizar;
 
     @FXML
-    private Tab tbCliente;
+    private Tab tbCliente, tbPedido;
 
     @FXML
     private VBox defaultContent, vbInicio;
@@ -96,7 +98,7 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Pedido, Float> tcPrecoFinal;
     @FXML
     private TableColumn<Pedido, String> tcObservacao;
-    
+
     ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
 
     @FXML
@@ -107,6 +109,9 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Criando cliente");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/NovoClienteFXML.fxml"));
+            NovoClienteFXMLController nc = new NovoClienteFXMLController();
+            nc.init(this);
+            fxmlLoader.setController(nc);
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -171,7 +176,14 @@ public class FXMLDocumentController implements Initializable {
         alert.setContentText("Finalize o pedido na aba *Pedido* ");
         alert.showAndWait();
 
+        criaModelCliente(tfResNome.getText(), tfResEndereco.getText(), tfResNumero.getText(), tfResBairro.getText());
         return 0;
+    }
+
+    public void criaModelCliente(String nome, String endereco, String numero, String bairro) {
+        Cliente novoCliente = new Cliente(nome, endereco + ", " + numero + ", " + bairro);
+        ticket.cliente = novoCliente;
+        buscaPedido();
     }
 
     private boolean verificaCamposObrigatorios() {
@@ -258,6 +270,9 @@ public class FXMLDocumentController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/BemVindoFXML.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             spRoot.getItems().set(1, root1);
+
+            //cria novo ticket
+            ticket = new Ticket();
 
             //Pedidos
             pedidos.removeAll(pedidos); //limpa todos os pedidos anteriores
@@ -383,14 +398,48 @@ public class FXMLDocumentController implements Initializable {
             System.out.println(p);
         }
     }
-    
-    @FXML
-    public void finalizaPedido(){
-        
+
+    public void buscaPedido() {
+        tpNovoPedido.getSelectionModel().select(tbPedido);
     }
-    
+
     @FXML
-    public void cancelaPedido(){
+    public int finalizaPedido() {
+        if (ticket.cliente == null) {
+            System.out.println("Confirme um cliente na aba *Cliente*");
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Confirme um cliente na aba *Cliente*");
+            alert.showAndWait();
+            return 0;
+        }
+             
+        for (Pedido p : pedidos) {
+            ticket.pedidos.add(p);
+        }
+
+        if (ticket.pedidos.isEmpty()){
+            System.out.println("Lista de pedidos vazia");
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Selecione pelo menos um pedido para finalizar o pedido!");
+            alert.showAndWait();
+            return 0;
+        }
+        
+        System.out.println("CHECKOUT\n" + "Cliente: " + ticket.cliente.nome + "Pedidos:\n" + pedidos);
+        
+        //TODO
+        //loadCheckout();
+        
+        loadBemVindo();
+        return 1;
+    }
+
+    @FXML
+    public void cancelaPedido() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Cancelar Pedido!");
         alert.setHeaderText(null);
@@ -403,4 +452,5 @@ public class FXMLDocumentController implements Initializable {
             // ... user chose CANCEL or closed the dialog
         }
     }
+
 }

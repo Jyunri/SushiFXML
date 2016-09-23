@@ -5,11 +5,14 @@
  */
 package sushitinafxml;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author jonathansuenaga
  */
 public class Ticket {
-    Pedido pedido;
+    List<Pedido> pedidos = new ArrayList();
     Cliente cliente;
 }

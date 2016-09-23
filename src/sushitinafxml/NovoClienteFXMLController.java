@@ -31,10 +31,10 @@ import javafx.stage.Stage;
  * @author jonathansuenaga
  */
 public class NovoClienteFXMLController implements Initializable {
-    
+
     //Referencia ao Controller Principal
     FXMLDocumentController fm;
-    
+
     @FXML
     TextField tfTelefone, tfNome, tfEndereco, tfNumero, tfComplemento, tfBairro;
 
@@ -50,6 +50,11 @@ public class NovoClienteFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    //recebe referencia do controller pai
+    public void init(FXMLDocumentController fm) {
+        this.fm = fm;
     }
 
     @FXML
@@ -89,8 +94,11 @@ public class NovoClienteFXMLController implements Initializable {
             String obs = taObservacoes.getText();
             String[] entries = {codigo, telefone, nome, endereco, numero, complemento, bairro, obs};
             writer.writeNext(entries);
+            
+            fm.criaModelCliente(nome, endereco, numero, bairro);
         }
-
+        
+        fm.buscaPedido();
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Cliente Criado");
         alert.setHeaderText(null);
