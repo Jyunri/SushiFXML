@@ -39,6 +39,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -50,9 +51,11 @@ import javafx.util.converter.IntegerStringConverter;
  */
 public class FXMLDocumentController implements Initializable {
 
+    //Model declarations
     Ticket ticket;
+    ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
 
-    //declarations
+    //View declarations
     @FXML
     private SplitPane spRoot;
 
@@ -98,8 +101,6 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Pedido, Float> tcPrecoFinal;
     @FXML
     private TableColumn<Pedido, String> tcObservacao;
-
-    ObservableList<Pedido> pedidos = FXCollections.observableArrayList();
 
     @FXML
     private Button btRemover;
@@ -169,13 +170,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private int confirmaResultado() {
-        System.out.println("Confirma Resultado");
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Confirma Resultado");
-        alert.setHeaderText(null);
-        alert.setContentText("Finalize o pedido na aba *Pedido* ");
-        alert.showAndWait();
-
+        CustomUtilities.informationDialog("Confirma Resultado", false, "", "Finalize o pedido na aba *Pedido* ");
         criaModelCliente(tfResNome.getText(), tfResEndereco.getText(), tfResNumero.getText(), tfResBairro.getText());
         return 0;
     }
@@ -324,11 +319,7 @@ public class FXMLDocumentController implements Initializable {
     public int finalizaEdicao(ActionEvent event) throws FileNotFoundException, IOException {
         if (!verificaCamposObrigatorios()) {
             System.out.println("Falta preencher!");
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Campos Incompletos!");
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha todos os campos obrigatórios!");
-            alert.showAndWait();
+            CustomUtilities.informationDialog("Erro!", false, "", "Preencha todos os campos obrigatórios");
             return -1;
         }
 
@@ -347,12 +338,7 @@ public class FXMLDocumentController implements Initializable {
                 if (!telefoneAlreadyFound) {
                     telefoneAlreadyFound = true;
                 } else {
-                    System.out.println("Telefone duplicado!");
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Telefone Duplicado");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Este telefone ja esta cadastrado");
-                    alert.showAndWait();
+                    CustomUtilities.informationDialog("Erro!", false, "", "Este telefone já está cadastrado");
                     return -1;
                 }
             }
@@ -406,35 +392,58 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public int finalizaPedido() {
         if (ticket.cliente == null) {
-            System.out.println("Confirme um cliente na aba *Cliente*");
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Confirme um cliente na aba *Cliente*");
-            alert.showAndWait();
+            System.out.println("Selecione um cliente");
+            CustomUtilities.informationDialog("Erro!", false, "", "Confirme um cliente na aba *Cliente*");
             return 0;
         }
-             
+
+        ticket.pedidos.clear();
         for (Pedido p : pedidos) {
             ticket.pedidos.add(p);
         }
 
-        if (ticket.pedidos.isEmpty()){
+        if (ticket.pedidos.isEmpty()) {
             System.out.println("Lista de pedidos vazia");
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Selecione pelo menos um pedido para finalizar o pedido!");
-            alert.showAndWait();
+            CustomUtilities.informationDialog("Erro!", false, "", "Selecione pelo menos um pedido para finalizar o pedido!");
+
             return 0;
         }
-        
-        System.out.println("CHECKOUT\n" + "Cliente: " + ticket.cliente.nome + "Pedidos:\n" + pedidos);
-        
         //TODO
         //loadCheckout();
-        
-        loadBemVindo();
+        String clienteCheckout = "Cliente: " + ticket.cliente.nome + "\n";
+        String enderecoCheckout = "Endereco: " + ticket.cliente.endereco_simplificado + "\n";
+        String pedidoCheckout = ticket.listaPedidos();
+
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Finalizar Pedido");
+        alert.setHeaderText(null);
+        alert.setContentText("Voce deseja gerar um ticket para o pedido abaixo?");
+
+        TextArea textArea = new TextArea(clienteCheckout+enderecoCheckout+pedidoCheckout);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        GridPane expContent = new GridPane();
+        expContent.setMaxWidth(Double.MAX_VALUE);
+        expContent.add(textArea, 0, 1);
+
+        // Set expandable Exception into the dialog pane.
+        alert.getDialogPane().setExpandableContent(expContent);
+        alert.getDialogPane().setExpanded(true);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            System.out.println("gerando ticket para o motoboy");
+            CustomUtilities.informationDialog("Ticket Gerado!", false, "","Seu pedido foi enviado a fila!");
+            loadBemVindo();
+            return 1;
+        }
+        System.out.println("Cancelado");
         return 1;
     }
 

@@ -16,9 +16,9 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <ImageView fitHeight="142.0" fitWidth="242.0" layoutX="179.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="139.0" fitWidth="187.0" layoutX="215.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../logo_alfa.png" />
+                  <Image url="@logo_alfa.jpg" />
                </image>
             </ImageView>
          </children>

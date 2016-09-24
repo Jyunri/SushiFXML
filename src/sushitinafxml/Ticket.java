@@ -13,6 +13,19 @@ import java.util.List;
  * @author jonathansuenaga
  */
 public class Ticket {
+
     List<Pedido> pedidos = new ArrayList();
     Cliente cliente;
+
+    public String listaPedidos() {
+        String s = "Pedidos:\n";
+        for (Pedido p : pedidos) {
+            s += p.getQuantidade() + " "
+               + p.getDescricao()+ ", R$"
+               + p.precoUnitario + " cada, Obs:"
+               + p.observacao + "\n";
+        }
+        return s;
+    }
+
 }

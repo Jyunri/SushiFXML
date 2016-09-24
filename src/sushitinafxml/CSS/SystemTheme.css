@@ -79,7 +79,7 @@ and open the template in the editor.
     -fx-font-family: "Arial";
     -fx-text-fill: linear-gradient(black 0%, #4d4d4d 50%, black 100%);
     -fx-font-size: 14px;
-    -fx-padding: 10 20 10 20;
+    /*-fx-padding: 10 20 10 20;*/
 }
 
 .button {
@@ -93,7 +93,7 @@ and open the template in the editor.
     -fx-text-fill: linear-gradient(white, #d0d0d0);
     -fx-font-family: "Arial";
     -fx-font-size: 14px;
-    -fx-padding: 10 20 10 20;
+    /*-fx-padding: 10 20 10 20;*/
 }
 
 .button:pressed {
@@ -105,7 +105,7 @@ and open the template in the editor.
 
 .grid-pane {
     -fx-grid-lines-visible: false;
-    -fx-padding: 5 22 5 22;
+    /*-fx-padding: 5 22 5 22;*/
     -fx-border-color: #660000,
         linear-gradient(#800000 0%, #4d0000 20%, #330000 100%),
         radial-gradient(center 50% 0%, radius 80%, rgba(179,0,0, .9), rgba(255,255,255,0));
