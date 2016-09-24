@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane fx:id="spRoot" dividerPositions="0.5" prefHeight="600" prefWidth="1000" styleClass="background" stylesheets="@../CSS/stylesheets.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
+<SplitPane fx:id="spRoot" dividerPositions="0.5" prefHeight="600" prefWidth="1000" styleClass="background" stylesheets="@../CSS/SystemTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
     <items>
         <Pane prefHeight="300.0" prefWidth="200.0">
             <children>

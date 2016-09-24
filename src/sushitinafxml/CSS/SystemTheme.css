@@ -1,0 +1,117 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 7, 2016, 6:38:09 PM
+    Author     : daniel.adamis
+*/
+
+* {
+    objs-bg-color: white;
+    borders-color: #373d49;
+    text-color: #000000;
+    
+    txf-bg-color-focused: #595959;
+    text-color-focused: #e6e6e6;
+}
+
+.background {
+    -fx-background-color: 
+        #cccccc,
+        linear-gradient(#f2f2f2 0%, #cccccc 5%, #f2f2f2 50%, #8c8c8c 100%),
+        radial-gradient(center 50% 50%, radius 50%, rgba(242,242,242, .6), rgba(255,255,255, 0));
+}
+
+.label, .text {
+    -fx-text-fill: linear-gradient(black 0%, #4d4d4d 50%, black 100%);
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+}
+
+.pane {
+    -fx-base: transparent;
+    -fx-text-fill: #1f2429;
+    -fx-fill: #0b0d0f;
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+    
+}
+
+.tab-pane .tab {
+    -fx-background-color: 
+        #cccccc,
+        linear-gradient(#f2f2f2 0%, #cccccc 5%, #8c8c8c 100%),
+        radial-gradient(center 50% 50%, radius 50%, rgba(242,242,242, .6), rgba(255,255,255, 0));
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color:
+        white,
+        linear-gradient(white 0%, #cccccc 100%),
+        radial-gradient(center 50% 50%, radius 50%, rgba(242,242,242, .6), rgba(255,255,255, 0));
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: 
+        #cccccc,
+        linear-gradient(#f2f2f2 0%, #cccccc 5%, #f2f2f2 50%, #8c8c8c 100%),
+        radial-gradient(center 50% 50%, radius 50%, rgba(242,242,242, .6), rgba(255,255,255, 0));
+    -fx-border-color:
+        #cccccc,
+        linear-gradient(#f2f2f2 0%, #cccccc 5%, #f2f2f2 50%, #8c8c8c 100%),
+        radial-gradient(center 50% 50%, radius 50%, rgba(242,242,242, .6), rgba(255,255,255, 0));
+    -fx-border-radius: 100;
+        
+}
+
+.text-field, .text-area {
+    -fx-background-color: white;
+    -fx-border-color: #660000,
+        linear-gradient(#800000 0%, #4d0000 20%, #330000 100%),
+        radial-gradient(center 50% 0%, radius 80%, rgba(179,0,0, .9), rgba(255,255,255,0));
+/*    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .6), 5, .0, 0, 1);
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(black 0%, #4d4d4d 50%, black 100%);
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+}
+
+.button {
+    -fx-background-color: 
+        #660000,
+        linear-gradient(#800000 0%, #4d0000 20%, #330000 100%),
+        radial-gradient(center 50% 0%, radius 80%, rgba(179,0,0, .9), rgba(255,255,255,0));
+/*    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .6), 5, .0, 0, 1);
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+}
+
+.button:pressed {
+    -fx-background-color: 
+        #660000,
+        linear-gradient(#800000 0%, #4d0000 5%, #330000 100%),
+        radial-gradient(center 50% 50%, radius 50%, rgba(179,0,0, .6), rgba(255,255,255, 0));
+}
+
+.grid-pane {
+    -fx-grid-lines-visible: false;
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #660000,
+        linear-gradient(#800000 0%, #4d0000 20%, #330000 100%),
+        radial-gradient(center 50% 0%, radius 80%, rgba(179,0,0, .9), rgba(255,255,255,0));
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .6), 5, .0, 0, 1);
+    -fx-border-radius: 3;
+    -fx-border-width: 1px;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
