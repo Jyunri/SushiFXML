@@ -17,9 +17,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.5" styleClass="background" stylesheets="@CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
+<SplitPane dividerPositions="0.5" styleClass="background" stylesheets="@CSS/SystemTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
     <items>
         <Pane prefHeight="200.0" prefWidth="200.0">
             <children>
@@ -27,7 +26,7 @@
                     <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                             <children>
-                                <Button fx:id="tfNovoPedido" mnemonicParsing="false" onAction="#handleButtonAction" text="Novo Pedido" />
+                                <Button fx:id="tfNovoPedido" disable="true" mnemonicParsing="false" onAction="#handleButtonAction" text="Novo Pedido" />
                             </children>
                         </StackPane>
                         <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0">
@@ -47,12 +46,8 @@
                             <children>
                                 <HBox spacing="10.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Telefone" wrappingWidth="123.7646484375">
-                                            <HBox.margin>
-                                                <Insets top="3.0" />
-                                            </HBox.margin>
-                                        </Text>
-                                        <TextField fx:id="tfTelefone" prefHeight="36.0" prefWidth="292.0" promptText="Ex:1239515661" />
+                              <Label fx:id="lbCarrinho1" prefHeight="26.0" prefWidth="124.0" text="Telefone" />
+                                        <TextField fx:id="tfTelefone" prefHeight="38.0" prefWidth="308.0" promptText="Ex:1239515661" />
                                         <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="85.0" text="Buscar" />
                                     </children>
                                     <padding>
@@ -64,11 +59,7 @@
                                 </HBox>
                                 <HBox spacing="10.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Código do Cliente" wrappingWidth="125.78581237792969" HBox.hgrow="ALWAYS">
-                                            <HBox.margin>
-                                                <Insets top="3.0" />
-                                            </HBox.margin>
-                                        </Text>
+                              <Label fx:id="lbCarrinho11" prefHeight="26.0" prefWidth="125.0" text="Código do Cliente" />
                                         <TextField fx:id="tfCodigoCliente" prefHeight="31.0" prefWidth="193.0">
                                             <HBox.margin>
                                                 <Insets right="50.0" />
@@ -87,13 +78,8 @@
                                 </HBox>
                                 <HBox layoutX="20.0" layoutY="20.0" spacing="10.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Nome" wrappingWidth="51.69140625">
-                                            <HBox.margin>
-                                                <Insets top="3.0" />
-                                            </HBox.margin>
-                                        </Text>
-                                        <Region prefHeight="31.0" prefWidth="75.0" />
-                                        <TextField fx:id="tfNome" prefHeight="31.0" prefWidth="398.0" HBox.hgrow="ALWAYS">
+                              <Label fx:id="lbCarrinho111" prefHeight="26.0" prefWidth="126.0" text="Nome" />
+                                        <TextField fx:id="tfNome" prefHeight="38.0" prefWidth="398.0" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
                                                 <Insets right="50.0" />
                                             </HBox.margin>
@@ -108,13 +94,9 @@
                                 </HBox>
                                 <HBox layoutX="20.0" layoutY="20.0" spacing="10.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Endereço" wrappingWidth="75.07470703125">
-                                            <HBox.margin>
-                                                <Insets top="3.0" />
-                                            </HBox.margin>
-                                        </Text>
+                              <Label fx:id="lbCarrinho1111" prefHeight="26.0" prefWidth="126.0" text="Endereço" />
                                         <Region prefHeight="31.0" prefWidth="41.0" />
-                                        <TextField fx:id="tfEndereco" prefHeight="31.0" prefWidth="388.0" HBox.hgrow="ALWAYS">
+                                        <TextField fx:id="tfEndereco" prefHeight="38.0" prefWidth="421.0" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
                                                 <Insets right="50.0" />
                                             </HBox.margin>
@@ -155,11 +137,11 @@
             
                 <Tab text="Pedido">
                     <content>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="357.0" prefWidth="557.0" vbarPolicy="ALWAYS" vvalue="1.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="357.0" prefWidth="557.0" styleClass="background" vbarPolicy="ALWAYS" vvalue="1.0">
                             <content>
-                                <BorderPane prefHeight="297.0" prefWidth="590.0">
+                                <BorderPane prefHeight="371.0" prefWidth="593.0" styleClass="background">
                                     <center>
-                                        <HBox prefHeight="180.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+                                        <HBox fillHeight="false" prefHeight="82.0" prefWidth="590.0" spacing="10.0" BorderPane.alignment="CENTER">
                                             <children>
                                                 <Button fx:id="btAdicionarItem" mnemonicParsing="false" onAction="#adicionarItem" text="Adicionar item" />
                                             </children>
@@ -169,7 +151,7 @@
                                         </HBox>
                                     </center>
                                     <top>
-                                        <VBox BorderPane.alignment="CENTER">
+                                        <VBox prefHeight="275.0" prefWidth="550.0" BorderPane.alignment="CENTER">
                                             <BorderPane.margin>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                             </BorderPane.margin>
@@ -179,7 +161,7 @@
                                                         <Insets bottom="10.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <GridPane fx:id="gridCarrinho" prefHeight="179.0" prefWidth="600.0" styleClass="grid-pane">
+                                                <GridPane fx:id="gridCarrinho" prefHeight="244.0" prefWidth="543.0" styleClass="grid-pane">
                                                     <columnConstraints>
                                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -190,7 +172,7 @@
                                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Text" wrappingWidth="43.708335876464844" />
+                                          <Label fx:id="lbCarrinho2" text="Text" />
                                                     </children>
                                                 </GridPane>
                                             </children>
