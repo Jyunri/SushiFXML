@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane fx:id="spRoot" dividerPositions="0.5" prefHeight="600" prefWidth="1000" styleClass="background" stylesheets="@../CSS/SystemTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
+<SplitPane  fx:id="spRoot" dividerPositions="0.5" prefHeight="600" prefWidth="1000" styleClass="background" stylesheets="@../CSS/SystemTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
     <items>
         <Pane prefHeight="300.0" prefWidth="200.0">
             <children>
@@ -35,12 +35,12 @@
                         </StackPane>
                         <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0">
                             <children>
-                                <Button mnemonicParsing="false" text="Produtos" />
+                                <Button mnemonicParsing="false" text="Produtos" onAction="#loadProdutos" />
                             </children>
                         </StackPane>
                         <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0">
                             <children>
-                                <Button mnemonicParsing="false" text="Pedidos na Fila" />
+                                <Button mnemonicParsing="false" text="Pedidos na Fila" onAction="#loadFilaPedidos" />
                             </children>
                         </StackPane>
                     </children>
@@ -226,7 +226,7 @@
                                 <HBox prefHeight="180.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#adicionarItem" text="Adicionar item" />
-                              <Button mnemonicParsing="false" onAction="#removeCarrinho" text="Remover item" />
+                                        <Button mnemonicParsing="false" onAction="#removeCarrinho" text="Remover item" />
                                     </children>
                                     <padding>
                                         <Insets left="20.0" top="20.0" />
@@ -245,37 +245,40 @@
                                             </VBox.margin>
                                         </Label>
                                         <ScrollPane>
-                                 <content>
-                                    <TableView fx:id="tvCarrinho" prefHeight="200.0" prefWidth="1000.0">
-                                      <columns>
-                                        <TableColumn fx:id="tcCodigo" prefWidth="75.0" text="Código" />
-                                        <TableColumn fx:id="tcDescricao" prefWidth="118.0" text="Descrição" />
-                                          <TableColumn fx:id="tcPrecoUnitario" prefWidth="107.0" text="Preço unitário" />
-                                          <TableColumn fx:id="tcQuantidade" minWidth="0.0" prefWidth="64.0" text="Qtd" />
-                                          <TableColumn fx:id="tcPrecoFinal" prefWidth="135.0" text="Preço Final" />
-                                          <TableColumn fx:id="tcObservacao" prefWidth="90.0" text="Obs" />
-                                      </columns>
-                                    </TableView>
-                                 </content>
+                                            <content>
+                                                <TableView fx:id="tvCarrinho" prefHeight="200.0" prefWidth="1000.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="tcCodigo" prefWidth="75.0" text="Código" />
+                                                        <TableColumn fx:id="tcDescricao" prefWidth="118.0" text="Descrição" />
+                                                        <TableColumn fx:id="tcPrecoUnitario" prefWidth="107.0" text="Preço unitário" />
+                                                        <TableColumn fx:id="tcQuantidade" minWidth="0.0" prefWidth="64.0" text="Qtd" />
+                                                        <TableColumn fx:id="tcPrecoFinal" prefWidth="135.0" text="Preço Final" />
+                                                        <TableColumn fx:id="tcObservacao" prefWidth="90.0" text="Obs" />
+                                                    </columns>
+                                                </TableView>
+                                            </content>
                                         </ScrollPane>
                                     </children>
                                 </VBox>
                             </top>
-                     <bottom>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#finalizaPedido" text="Finalizar" />
-                              <Button mnemonicParsing="false" onAction="#cancelaPedido" text="Cancelar" />
-                           </children>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </HBox>
-                     </bottom>
+                            <bottom>
+                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#finalizaPedido" text="Finalizar" />
+                                        <Button mnemonicParsing="false" onAction="#cancelaPedido" text="Cancelar" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="20.0" />
+                                    </padding>
+                                </HBox>
+                            </bottom>
                         </BorderPane>
                     </content>
                 </Tab>
             </tabs>
         </TabPane>
+        <Pane fx:id="pnProduto"></Pane> 
+        <Pane fx:id="pnFilaPedido"></Pane> 
+
     </items>
 </SplitPane>

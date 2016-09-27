@@ -39,6 +39,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -61,6 +62,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TabPane tpNovoPedido;
+    @FXML
+    private Pane pnProduto, pnFilaPedido;
 
     @FXML
     private Label lbCarrinho, lbTeste;
@@ -227,7 +230,49 @@ public class FXMLDocumentController implements Initializable {
         tbCliente.setContent(vbInicio);
         btFinalizar.setDisable(true);
 
-        //tabela de pedidos
+        loadTabelaPedidos();
+
+    }
+
+    void loadBemVindo() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/BemVindoFXML.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            spRoot.getItems().set(1, root1);
+
+            //cria novo ticket
+            ticket = new Ticket();
+
+            //Pedidos
+            pedidos.removeAll(pedidos); //limpa todos os pedidos anteriores
+            tpNovoPedido.getSelectionModel().select(tbCliente); //inicia a Tab selecionando a primeira tab
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //tela NovoPedido
+    @FXML
+    void loadInicio(ActionEvent event) {
+        spRoot.getItems().set(1,tpNovoPedido);
+        tbCliente.setContent(vbInicio);
+    }
+    
+    //tela Produtos
+    @FXML
+    void loadProdutos(ActionEvent event) {
+        spRoot.getItems().set(1, pnProduto);
+    }
+    
+    
+    //tela Fila de Pedidos
+    @FXML
+    void loadFilaPedidos(ActionEvent event) {
+        spRoot.getItems().set(1, pnFilaPedido);
+    }
+    
+    //inicializa tabela da aba Pedido
+    void loadTabelaPedidos() {
         tvCarrinho.setEditable(true);
 
         tcCodigo.setCellValueFactory(
@@ -258,30 +303,6 @@ public class FXMLDocumentController implements Initializable {
             tvCarrinho.getItems().get(e.getTablePosition().getRow()).updatePrecoFinal();
             tvCarrinho.refresh();
         });
-    }
-
-    void loadBemVindo() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/BemVindoFXML.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            spRoot.getItems().set(1, root1);
-
-            //cria novo ticket
-            ticket = new Ticket();
-
-            //Pedidos
-            pedidos.removeAll(pedidos); //limpa todos os pedidos anteriores
-            tpNovoPedido.getSelectionModel().select(tbCliente); //inicia a Tab selecionando a primeira tab
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //tela Inicio
-    @FXML
-    void loadInicio(ActionEvent event) {
-        spRoot.getItems().set(1, tpNovoPedido);
-        tbCliente.setContent(vbInicio);
     }
 
     //tela Busca
@@ -419,7 +440,7 @@ public class FXMLDocumentController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Voce deseja gerar um ticket para o pedido abaixo?");
 
-        TextArea textArea = new TextArea(clienteCheckout+enderecoCheckout+pedidoCheckout);
+        TextArea textArea = new TextArea(clienteCheckout + enderecoCheckout + pedidoCheckout);
         textArea.setEditable(false);
         textArea.setWrapText(true);
 
@@ -439,11 +460,11 @@ public class FXMLDocumentController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             System.out.println("gerando ticket para o motoboy");
-            CustomUtilities.informationDialog("Ticket Gerado!", false, "","Seu pedido foi enviado a fila!");
-            for(String printer:CustomUtilities.retornaImressoras()){
+            CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila!");
+            for (String printer : CustomUtilities.retornaImressoras()) {
                 System.out.println(printer);
             }
-            
+
             loadBemVindo();
             return 1;
         }
