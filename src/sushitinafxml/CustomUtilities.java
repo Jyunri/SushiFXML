@@ -5,13 +5,19 @@
  */
 package sushitinafxml;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.control.Alert;
+import javax.print.PrintService;
+import javax.print.DocFlavor;
+import javax.print.PrintServiceLookup;
 
 /**
  *
  * @author Jimy
  */
 public class CustomUtilities {
+    
     public static void informationDialog(String title, boolean hasHeader, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -19,5 +25,20 @@ public class CustomUtilities {
         else    alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+    
+    public static List<String> retornaImressoras(){
+        try {
+            List<String> listaImpressoras = new ArrayList<>();
+            DocFlavor df = DocFlavor.SERVICE_FORMATTED.PRINTABLE;  
+            PrintService[] ps = PrintServiceLookup.lookupPrintServices(df, null);  
+            for (PrintService p : ps) {  
+                listaImpressoras.add(p.getName());     
+            }  
+            return listaImpressoras;
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+        return null;
     }
 }

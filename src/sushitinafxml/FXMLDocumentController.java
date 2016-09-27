@@ -440,6 +440,10 @@ public class FXMLDocumentController implements Initializable {
         if (result.get() == ButtonType.OK) {
             System.out.println("gerando ticket para o motoboy");
             CustomUtilities.informationDialog("Ticket Gerado!", false, "","Seu pedido foi enviado a fila!");
+            for(String printer:CustomUtilities.retornaImressoras()){
+                System.out.println(printer);
+            }
+            
             loadBemVindo();
             return 1;
         }
