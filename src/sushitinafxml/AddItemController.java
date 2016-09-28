@@ -59,7 +59,7 @@ public class AddItemController implements Initializable {
     @FXML
     int buscarItem(ActionEvent event) throws FileNotFoundException, IOException {
         System.out.println("Buscando Clientes");
-        CSVReader reader = new CSVReader(new FileReader("ProdutosCSV.csv"));
+        CSVReader reader = new CSVReader(new FileReader("MenuSushiTina.csv"));
         String codigoItem = tfCodigoItem.getText();
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null) {
@@ -67,7 +67,7 @@ public class AddItemController implements Initializable {
             if (nextLine[0].equals(codigoItem)) {
                 System.out.println("Encontrou, Item: " + nextLine[1]);
                 tfNomeItem.setText(nextLine[1]);
-                tfPreco.setText(nextLine[2]);
+                tfPreco.setText(nextLine[3]);
                 btAdicionar.setDisable(false);
                 return 1;
             }

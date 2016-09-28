@@ -181,6 +181,8 @@ public class FXMLDocumentController implements Initializable {
     public void criaModelCliente(String nome, String endereco, String numero, String bairro) {
         Cliente novoCliente = new Cliente(nome, endereco + ", " + numero + ", " + bairro);
         ticket.cliente = novoCliente;
+        ticket.auxNome = novoCliente.nome;
+        ticket.auxEndereco = novoCliente.endereco_simplificado;
         buscaPedido();
     }
 
@@ -241,7 +243,7 @@ public class FXMLDocumentController implements Initializable {
             spRoot.getItems().set(1, root1);
 
             //cria novo ticket
-            ticket = new Ticket();
+            ticket = new Ticket("novo cliente","endereco");
 
             //Pedidos
             pedidos.removeAll(pedidos); //limpa todos os pedidos anteriores
@@ -261,14 +263,27 @@ public class FXMLDocumentController implements Initializable {
     //tela Produtos
     @FXML
     void loadProdutos(ActionEvent event) {
-        spRoot.getItems().set(1, pnProduto);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/ProdutosFXML.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            spRoot.getItems().set(1, root1);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     
     //tela Fila de Pedidos
     @FXML
     void loadFilaPedidos(ActionEvent event) {
-        spRoot.getItems().set(1, pnFilaPedido);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/FilaPedidosFXML.fxml"));
+            fxmlLoader.setController(SushiTinaFXML.filaPedidosFXMLController);
+            Parent root1 = (Parent) fxmlLoader.load();
+            spRoot.getItems().set(1, root1);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     //inicializa tabela da aba Pedido
@@ -460,11 +475,12 @@ public class FXMLDocumentController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             System.out.println("gerando ticket para o motoboy");
-            CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila!");
+            CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila!");            
+            SushiTinaFXML.filaPedidosFXMLController.tickets.add(ticket);
             for (String printer : CustomUtilities.retornaImressoras()) {
                 System.out.println(printer);
             }
-
+            
             loadBemVindo();
             return 1;
         }

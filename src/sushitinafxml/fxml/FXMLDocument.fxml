@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane  fx:id="spRoot" dividerPositions="0.5" prefHeight="600" prefWidth="1000" styleClass="background" stylesheets="@../CSS/SystemTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
+<SplitPane fx:id="spRoot" dividerPositions="0.5" prefHeight="600" prefWidth="1000" styleClass="background" stylesheets="@../CSS/SystemTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.FXMLDocumentController">
     <items>
         <Pane prefHeight="300.0" prefWidth="200.0">
             <children>
@@ -30,17 +30,17 @@
                     <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                             <children>
-                                <Button fx:id="btNovoPedido" mnemonicParsing="false" onAction="#loadInicio" text="Novo Pedido" />
+                                <Button fx:id="btNovoPedido" mnemonicParsing="false" onAction="#loadInicio" prefWidth="150.0" text="Novo Pedido" />
                             </children>
                         </StackPane>
                         <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0">
                             <children>
-                                <Button mnemonicParsing="false" text="Produtos" onAction="#loadProdutos" />
+                                <Button mnemonicParsing="false" onAction="#loadProdutos" prefWidth="150.0" text="Produtos" />
                             </children>
                         </StackPane>
                         <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0">
                             <children>
-                                <Button mnemonicParsing="false" text="Pedidos na Fila" onAction="#loadFilaPedidos" />
+                                <Button mnemonicParsing="false" onAction="#loadFilaPedidos" prefWidth="150.0" text="Pedidos na Fila" />
                             </children>
                         </StackPane>
                     </children>
@@ -53,8 +53,8 @@
                     <content>                                                       
                         <VBox fx:id="vbInicio" prefHeight="371.0" prefWidth="647.0" spacing="30.0">
                             <children>
-                                <Button onAction="#criaCliente" text="Novo Cliente" />
-                                <Button onAction="#loadSearch" text="Cliente Já Cadastrado" />
+                                <Button onAction="#criaCliente" text="Novo Cliente" prefWidth="180.0" />
+                                <Button onAction="#loadSearch" text="Cliente Já Cadastrado" prefWidth="180.0" />
                             </children>
                         </VBox>
                         <ScrollPane>
@@ -277,8 +277,5 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <Pane fx:id="pnProduto"></Pane> 
-        <Pane fx:id="pnFilaPedido"></Pane> 
-
     </items>
 </SplitPane>

@@ -17,6 +17,8 @@ import javafx.stage.Stage;
  */
 public class SushiTinaFXML extends Application {
     
+    public static FilaPedidosFXMLController filaPedidosFXMLController = new FilaPedidosFXMLController();
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/FXMLDocument.fxml"));

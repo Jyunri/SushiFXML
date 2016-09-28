@@ -16,6 +16,45 @@ public class Ticket {
 
     List<Pedido> pedidos = new ArrayList();
     Cliente cliente;
+    
+    String auxNome, auxEndereco;
+
+    public String getAuxNome() {
+        return auxNome;
+    }
+
+    public void setAuxNome(String auxNome) {
+        this.auxNome = auxNome;
+    }
+
+    public String getAuxEndereco() {
+        return auxEndereco;
+    }
+
+    public Ticket(String auxNome, String auxEndereco) {
+        this.auxNome = auxNome;
+        this.auxEndereco = auxEndereco;
+    }
+
+    public void setAuxEndereco(String auxEndereco) {
+        this.auxEndereco = auxEndereco;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public String listaPedidos() {
         String s = "Pedidos:\n";
