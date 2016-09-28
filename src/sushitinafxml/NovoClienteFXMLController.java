@@ -95,7 +95,7 @@ public class NovoClienteFXMLController implements Initializable {
             String[] entries = {codigo, telefone, nome, endereco, numero, complemento, bairro, obs};
             writer.writeNext(entries);
             
-            fm.criaModelCliente(nome, endereco, numero, bairro);
+            fm.criaModelCliente(telefone,nome, endereco, numero, complemento,bairro,obs);
         }
         
         fm.buscaPedido();

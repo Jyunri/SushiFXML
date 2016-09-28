@@ -16,7 +16,7 @@ public class Ticket {
 
     List<Pedido> pedidos = new ArrayList();
     Cliente cliente;
-    
+
     String auxNome, auxEndereco;
 
     public String getAuxNome() {
@@ -60,11 +60,23 @@ public class Ticket {
         String s = "Pedidos:\n";
         for (Pedido p : pedidos) {
             s += p.getQuantidade() + " "
-               + p.getDescricao()+ ", R$"
-               + p.precoUnitario + " cada, Obs:"
-               + p.observacao + "\n";
+                    + p.getDescricao() + ", R$"
+                    + p.precoUnitario + " cada, Obs:"
+                    + p.observacao + "\n";
         }
         return s;
+    }
+
+    public String imprimeTicket() {
+        String telefoneCheckout = "Telefone: " + this.cliente.telefone + "\n";
+        String clienteCheckout = "Cliente: " + this.cliente.nome + "\n";
+        String enderecoCheckout = "Endereco: " + this.cliente.endereco_simplificado + "\n";
+        String observacaoCheckout = "Observações: " + this.cliente.observacoes + "\n";
+        String pedidoCheckout = this.listaPedidos();
+
+        String ticket = telefoneCheckout + clienteCheckout + enderecoCheckout + observacaoCheckout + pedidoCheckout;
+
+        return ticket;
     }
 
 }

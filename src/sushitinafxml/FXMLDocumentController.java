@@ -109,6 +109,9 @@ public class FXMLDocumentController implements Initializable {
     private Button btRemover;
 
     @FXML
+    private TextField tfTotal;
+
+    @FXML
     private void criaCliente() {
         System.out.println("Criando cliente");
         try {
@@ -174,12 +177,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private int confirmaResultado() {
         CustomUtilities.informationDialog("Confirma Resultado", false, "", "Finalize o pedido na aba *Pedido* ");
-        criaModelCliente(tfResNome.getText(), tfResEndereco.getText(), tfResNumero.getText(), tfResBairro.getText());
+        criaModelCliente(tfResNumero.getText(),tfResNome.getText(), tfResEndereco.getText(), tfResNumero.getText(),tfResComp.getText(), tfResBairro.getText(), taResObservacoes.getText());
         return 0;
     }
 
-    public void criaModelCliente(String nome, String endereco, String numero, String bairro) {
-        Cliente novoCliente = new Cliente(nome, endereco + ", " + numero + ", " + bairro);
+    public void criaModelCliente(String telefone, String nome, String endereco, String numero,String complemento, String bairro,String observacoes) {
+        //Cliente novoCliente = new Cliente(nome, endereco + ", " + numero + ", " + bairro);
+        Cliente novoCliente = new Cliente(telefone,nome, endereco,numero,complemento,bairro,observacoes);
+
         ticket.cliente = novoCliente;
         ticket.auxNome = novoCliente.nome;
         ticket.auxEndereco = novoCliente.endereco_simplificado;
@@ -243,7 +248,7 @@ public class FXMLDocumentController implements Initializable {
             spRoot.getItems().set(1, root1);
 
             //cria novo ticket
-            ticket = new Ticket("novo cliente","endereco");
+            ticket = new Ticket("novo cliente", "endereco");
 
             //Pedidos
             pedidos.removeAll(pedidos); //limpa todos os pedidos anteriores
@@ -256,10 +261,10 @@ public class FXMLDocumentController implements Initializable {
     //tela NovoPedido
     @FXML
     void loadInicio(ActionEvent event) {
-        spRoot.getItems().set(1,tpNovoPedido);
+        spRoot.getItems().set(1, tpNovoPedido);
         tbCliente.setContent(vbInicio);
     }
-    
+
     //tela Produtos
     @FXML
     void loadProdutos(ActionEvent event) {
@@ -267,12 +272,11 @@ public class FXMLDocumentController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/ProdutosFXML.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             spRoot.getItems().set(1, root1);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
+
     //tela Fila de Pedidos
     @FXML
     void loadFilaPedidos(ActionEvent event) {
@@ -281,11 +285,11 @@ public class FXMLDocumentController implements Initializable {
             fxmlLoader.setController(SushiTinaFXML.filaPedidosFXMLController);
             Parent root1 = (Parent) fxmlLoader.load();
             spRoot.getItems().set(1, root1);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     //inicializa tabela da aba Pedido
     void loadTabelaPedidos() {
         tvCarrinho.setEditable(true);
@@ -317,6 +321,7 @@ public class FXMLDocumentController implements Initializable {
             tvCarrinho.getItems().get(e.getTablePosition().getRow()).setQuantidade(e.getNewValue());
             tvCarrinho.getItems().get(e.getTablePosition().getRow()).updatePrecoFinal();
             tvCarrinho.refresh();
+            calculaTotal();
         });
     }
 
@@ -404,8 +409,17 @@ public class FXMLDocumentController implements Initializable {
         return pedidos;
     }
 
+    public void calculaTotal() {
+        float sumTotal = 0;
+        for (Pedido p : pedidos) {
+            sumTotal += p.precoFinal;
+        }
+        tfTotal.setText(String.valueOf(sumTotal));
+    }
+
     public void adicionaCarrinho(String codigo, String descricao, String preco, String quantidade, String obs) {
         pedidos.add(new Pedido(Integer.valueOf(codigo), descricao, Float.valueOf(preco), Integer.valueOf(quantidade), obs));
+        calculaTotal();
     }
 
     @FXML
@@ -413,6 +427,7 @@ public class FXMLDocumentController implements Initializable {
         Pedido p = tvCarrinho.getSelectionModel().getSelectedItem();
         pedidos.remove(p);
         tvCarrinho.setItems(pedidos);
+        calculaTotal();
     }
 
     public void listaCarrinho() {
@@ -446,16 +461,13 @@ public class FXMLDocumentController implements Initializable {
         }
         //TODO
         //loadCheckout();
-        String clienteCheckout = "Cliente: " + ticket.cliente.nome + "\n";
-        String enderecoCheckout = "Endereco: " + ticket.cliente.endereco_simplificado + "\n";
-        String pedidoCheckout = ticket.listaPedidos();
 
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Finalizar Pedido");
         alert.setHeaderText(null);
         alert.setContentText("Voce deseja gerar um ticket para o pedido abaixo?");
 
-        TextArea textArea = new TextArea(clienteCheckout + enderecoCheckout + pedidoCheckout);
+        TextArea textArea = new TextArea(ticket.imprimeTicket());
         textArea.setEditable(false);
         textArea.setWrapText(true);
 
@@ -475,12 +487,13 @@ public class FXMLDocumentController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             System.out.println("gerando ticket para o motoboy");
-            CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila!");            
+            CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila!");
             SushiTinaFXML.filaPedidosFXMLController.tickets.add(ticket);
             for (String printer : CustomUtilities.retornaImressoras()) {
                 System.out.println(printer);
             }
             
+            tfTotal.clear();
             loadBemVindo();
             return 1;
         }
