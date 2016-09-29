@@ -54,10 +54,9 @@ public class FilaPedidosFXMLController implements Initializable {
     @FXML
     public int gerarTicket() {
         Ticket t = tvTickets.getSelectionModel().getSelectedItem();
-        t.imprimeTicket();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Finalizar Pedido");
+        alert.setTitle("Gerando Ticket");
         alert.setHeaderText(null);
         alert.setContentText("Voce deseja gerar um ticket para o pedido abaixo?");
 
@@ -81,8 +80,8 @@ public class FilaPedidosFXMLController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             System.out.println("gerando ticket para o motoboy");
-            CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila!");
-            for (String printer : CustomUtilities.retornaImressoras()) {
+            CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Retire seu ticket na impressora!");
+            for (String printer : CustomUtilities.retornaImpressoras()) {
                 System.out.println(printer);
             }
             return 1;
@@ -91,4 +90,20 @@ public class FilaPedidosFXMLController implements Initializable {
         return 1;
     }
 
+    @FXML
+    public void removeTicket() {
+        Ticket t = tvTickets.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Remover Ticket!");
+        alert.setHeaderText(null);
+        alert.setContentText("Deseja realmente remover ticket?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            tickets.remove(t);
+            tvTickets.setItems(tickets);
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
+    }
 }

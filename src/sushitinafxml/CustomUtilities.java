@@ -5,6 +5,7 @@
  */
 package sushitinafxml;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.Alert;
@@ -27,7 +28,7 @@ public class CustomUtilities {
         alert.showAndWait();
     }
     
-    public static List<String> retornaImressoras(){
+    public static List<String> retornaImpressoras(){
         try {
             List<String> listaImpressoras = new ArrayList<>();
             DocFlavor df = DocFlavor.SERVICE_FORMATTED.PRINTABLE;  
@@ -40,5 +41,10 @@ public class CustomUtilities {
             e.printStackTrace();  
         }  
         return null;
+    }
+    
+    public static String formataDecimais(float numero){
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(numero);
     }
 }

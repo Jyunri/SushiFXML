@@ -25,8 +25,8 @@ public class Cliente {
         this.endereco_simplificado  = endereco + ", " + numero + ", " + complemento + "," + bairro;
     }
     
-    public Cliente(String nome, String endereco_simplificado) {
+    //atendimento no balcao
+    public Cliente(String nome) {
         this.nome = nome;
-        this.endereco_simplificado = endereco_simplificado;
     }
 }

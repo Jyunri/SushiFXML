@@ -12,6 +12,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -27,6 +29,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
@@ -59,6 +62,9 @@ public class FXMLDocumentController implements Initializable {
     //View declarations
     @FXML
     private SplitPane spRoot;
+
+    @FXML
+    private Button btBalcao, btDelivery;
 
     @FXML
     private TabPane tpNovoPedido;
@@ -177,13 +183,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private int confirmaResultado() {
         CustomUtilities.informationDialog("Confirma Resultado", false, "", "Finalize o pedido na aba *Pedido* ");
-        criaModelCliente(tfResNumero.getText(),tfResNome.getText(), tfResEndereco.getText(), tfResNumero.getText(),tfResComp.getText(), tfResBairro.getText(), taResObservacoes.getText());
+        criaModelCliente(tfResNumero.getText(), tfResNome.getText(), tfResEndereco.getText(), tfResNumero.getText(), tfResComp.getText(), tfResBairro.getText(), taResObservacoes.getText());
         return 0;
     }
 
-    public void criaModelCliente(String telefone, String nome, String endereco, String numero,String complemento, String bairro,String observacoes) {
+    public void criaModelCliente(String telefone, String nome, String endereco, String numero, String complemento, String bairro, String observacoes) {
         //Cliente novoCliente = new Cliente(nome, endereco + ", " + numero + ", " + bairro);
-        Cliente novoCliente = new Cliente(telefone,nome, endereco,numero,complemento,bairro,observacoes);
+        Cliente novoCliente = new Cliente(telefone, nome, endereco, numero, complemento, bairro, observacoes);
 
         ticket.cliente = novoCliente;
         ticket.auxNome = novoCliente.nome;
@@ -241,18 +247,19 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    @FXML
     void loadBemVindo() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/BemVindoFXML.fxml"));
+            BemVindoFXMLController bc = new BemVindoFXMLController();
+            fxmlLoader.setController(bc);
+            bc.init(this);
             Parent root1 = (Parent) fxmlLoader.load();
             spRoot.getItems().set(1, root1);
 
             //cria novo ticket
             ticket = new Ticket("novo cliente", "endereco");
 
-            //Pedidos
-            pedidos.removeAll(pedidos); //limpa todos os pedidos anteriores
-            tpNovoPedido.getSelectionModel().select(tbCliente); //inicia a Tab selecionando a primeira tab
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -261,8 +268,23 @@ public class FXMLDocumentController implements Initializable {
     //tela NovoPedido
     @FXML
     void loadInicio(ActionEvent event) {
+        //Pedidos
+        pedidos.removeAll(pedidos); //limpa todos os pedidos anteriores
+
+        if (ticket.modoAtendimento.equals("d")) {
+            tpNovoPedido.getSelectionModel().select(tbCliente); //inicia a Tab selecionando a primeira tab
+            tbCliente.setDisable(false);
+            tbCliente.setContent(vbInicio);
+        } else {
+            ticket.cliente = new Cliente(ticket.modoAtendimento);
+            ticket.auxNome = ticket.modoAtendimento;
+            ticket.auxEndereco = "";
+            tpNovoPedido.getSelectionModel().select(tbPedido); //inicia a Tab selecionando a segunda tab
+            tbCliente.setDisable(true);
+        }
+        
+        calculaTotal();
         spRoot.getItems().set(1, tpNovoPedido);
-        tbCliente.setContent(vbInicio);
     }
 
     //tela Produtos
@@ -414,7 +436,7 @@ public class FXMLDocumentController implements Initializable {
         for (Pedido p : pedidos) {
             sumTotal += p.precoFinal;
         }
-        tfTotal.setText(String.valueOf(sumTotal));
+        tfTotal.setText(CustomUtilities.formataDecimais(sumTotal));
     }
 
     public void adicionaCarrinho(String codigo, String descricao, String preco, String quantidade, String obs) {
@@ -442,7 +464,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     public int finalizaPedido() {
-        if (ticket.cliente == null) {
+        if (ticket.modoAtendimento.equals("d") && ticket.cliente == null) {
             System.out.println("Selecione um cliente");
             CustomUtilities.informationDialog("Erro!", false, "", "Confirme um cliente na aba *Cliente*");
             return 0;
@@ -467,6 +489,9 @@ public class FXMLDocumentController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Voce deseja gerar um ticket para o pedido abaixo?");
 
+        ticket.setTimestamp(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date()));
+        ticket.setPrecoTotal(tfTotal.getText());
+
         TextArea textArea = new TextArea(ticket.imprimeTicket());
         textArea.setEditable(false);
         textArea.setWrapText(true);
@@ -487,18 +512,18 @@ public class FXMLDocumentController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             System.out.println("gerando ticket para o motoboy");
-            CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila!");
+            CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila! Retire seu ticket na impressora!");
             SushiTinaFXML.filaPedidosFXMLController.tickets.add(ticket);
-            for (String printer : CustomUtilities.retornaImressoras()) {
+            for (String printer : CustomUtilities.retornaImpressoras()) {
                 System.out.println(printer);
             }
-            
+
             tfTotal.clear();
             loadBemVindo();
             return 1;
         }
         System.out.println("Cancelado");
-        return 1;
+        return 0;
     }
 
     @FXML

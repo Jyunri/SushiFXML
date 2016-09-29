@@ -18,6 +18,28 @@ public class Ticket {
     Cliente cliente;
 
     String auxNome, auxEndereco;
+    
+    String modoAtendimento;
+    
+    String timestamp;
+    
+    String precoTotal;
+
+    public String getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(String precoTotal) {
+        this.precoTotal = precoTotal;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 
     public String getAuxNome() {
         return auxNome;
@@ -61,21 +83,25 @@ public class Ticket {
         for (Pedido p : pedidos) {
             s += p.getQuantidade() + " "
                     + p.getDescricao() + ", R$"
-                    + p.precoUnitario + " cada, Obs:"
+                    + p.precoFinal + ", Obs:"
                     + p.observacao + "\n";
         }
         return s;
     }
 
     public String imprimeTicket() {
+        String timestampCheckout  = "Hora do pedido: "+ this.getTimestamp() + "\n";
         String telefoneCheckout = "Telefone: " + this.cliente.telefone + "\n";
         String clienteCheckout = "Cliente: " + this.cliente.nome + "\n";
         String enderecoCheckout = "Endereco: " + this.cliente.endereco_simplificado + "\n";
-        String observacaoCheckout = "Observações: " + this.cliente.observacoes + "\n";
-        String pedidoCheckout = this.listaPedidos();
-
-        String ticket = telefoneCheckout + clienteCheckout + enderecoCheckout + observacaoCheckout + pedidoCheckout;
-
+        String observacaoCheckout = "Obs do cliente: " + this.cliente.observacoes + "\n";
+        String pedidoCheckout = "\n\n" + this.listaPedidos();
+        String totalCheckout = "\nTotal: " + this.precoTotal;
+        
+        String ticket = timestampCheckout + clienteCheckout;
+        if(modoAtendimento.equals("d")) ticket += telefoneCheckout  + enderecoCheckout + observacaoCheckout;
+        ticket += pedidoCheckout + totalCheckout;
+        
         return ticket;
     }
 
