@@ -29,6 +29,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
@@ -115,7 +116,10 @@ public class FXMLDocumentController implements Initializable {
     private Button btRemover;
 
     @FXML
-    private TextField tfTotal;
+    private TextField tfTotal, tfPago, tfTroco;
+    
+    @FXML
+    private ComboBox<String> cbFormaPagamento;
 
     @FXML
     private void criaCliente() {
@@ -244,6 +248,8 @@ public class FXMLDocumentController implements Initializable {
         btFinalizar.setDisable(true);
 
         loadTabelaPedidos();
+        cbFormaPagamento.getItems().addAll("Dinheiro","Cheque","Cartão");
+        cbFormaPagamento.setValue("Dinheiro");
 
     }
 
@@ -437,6 +443,12 @@ public class FXMLDocumentController implements Initializable {
             sumTotal += p.precoFinal;
         }
         tfTotal.setText(CustomUtilities.formataDecimais(sumTotal));
+        //calculaTroco(new ActionEvent());
+    }
+    
+    @FXML
+    public void calculaTroco(ActionEvent event){
+        tfTroco.setText(CustomUtilities.formataDecimais(Float.valueOf(tfPago.getText())-Float.valueOf(tfTotal.getText())));
     }
 
     public void adicionaCarrinho(String codigo, String descricao, String preco, String quantidade, String obs) {
@@ -491,6 +503,8 @@ public class FXMLDocumentController implements Initializable {
 
         ticket.setTimestamp(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date()));
         ticket.setPrecoTotal(tfTotal.getText());
+        ticket.setFormaPagamento(cbFormaPagamento.getValue());
+        ticket.setTroco(tfTroco.getText());
 
         TextArea textArea = new TextArea(ticket.imprimeTicket());
         textArea.setEditable(false);

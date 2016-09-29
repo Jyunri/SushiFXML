@@ -24,6 +24,32 @@ public class Ticket {
     String timestamp;
     
     String precoTotal;
+    
+    String formaPagamento, troco;
+
+    public String getModoAtendimento() {
+        return modoAtendimento;
+    }
+
+    public void setModoAtendimento(String modoAtendimento) {
+        this.modoAtendimento = modoAtendimento;
+    }
+
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
+    public String getTroco() {
+        return troco;
+    }
+
+    public void setTroco(String troco) {
+        this.troco = troco;
+    }
 
     public String getPrecoTotal() {
         return precoTotal;
