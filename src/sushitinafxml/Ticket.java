@@ -122,7 +122,7 @@ public class Ticket {
         String enderecoCheckout = "Endereco: " + this.cliente.endereco_simplificado + "\n";
         String observacaoCheckout = "Obs do cliente: " + this.cliente.observacoes + "\n";
         String pedidoCheckout = "\n\n" + this.listaPedidos();
-        String totalCheckout = "\nTotal: " + this.precoTotal;
+        String totalCheckout = "\nTotal: " + this.precoTotal+"\nTroco: " + this.troco;
         
         String ticket = timestampCheckout + clienteCheckout;
         if(modoAtendimento.equals("d")) ticket += telefoneCheckout  + enderecoCheckout + observacaoCheckout;

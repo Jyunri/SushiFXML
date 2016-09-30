@@ -443,7 +443,7 @@ public class FXMLDocumentController implements Initializable {
             sumTotal += p.precoFinal;
         }
         tfTotal.setText(CustomUtilities.formataDecimais(sumTotal));
-        //calculaTroco(new ActionEvent());
+        calculaTroco(new ActionEvent());
     }
     
     @FXML
