@@ -241,7 +241,6 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
         loadBemVindo();
 
         tbCliente.setContent(vbInicio);
@@ -250,7 +249,6 @@ public class FXMLDocumentController implements Initializable {
         loadTabelaPedidos();
         cbFormaPagamento.getItems().addAll("Dinheiro","Cheque","Cartão");
         cbFormaPagamento.setValue("Dinheiro");
-
     }
 
     @FXML
@@ -265,7 +263,6 @@ public class FXMLDocumentController implements Initializable {
 
             //cria novo ticket
             ticket = new Ticket("novo cliente", "endereco");
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -78,7 +78,7 @@ and open the template in the editor.
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .6), 5, .0, 0, 1);
     -fx-font-family: "Arial";
     -fx-text-fill: linear-gradient(black 0%, #4d4d4d 50%, black 100%);
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     /*-fx-padding: 10 20 10 20;*/
 }
 
@@ -114,4 +114,8 @@ and open the template in the editor.
     -fx-border-width: 1px;
     -fx-text-alignment: center;
     -fx-wrap-text: true;
+}
+
+.image-view {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .7), 35, .35, 0, 0);
 }
