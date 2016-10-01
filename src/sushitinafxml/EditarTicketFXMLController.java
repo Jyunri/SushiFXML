@@ -15,7 +15,9 @@ import javafx.fxml.Initializable;
  * @author jonathansuenaga
  */
 public class EditarTicketFXMLController implements Initializable {
-
+    
+    FilaPedidosFXMLController fc;
+    Ticket t;
     /**
      * Initializes the controller class.
      */
@@ -24,4 +26,8 @@ public class EditarTicketFXMLController implements Initializable {
         // TODO
     }    
     
+    public void init(FilaPedidosFXMLController fc, Ticket t){
+        this.fc = fc;
+        this.t = t;
+    }
 }

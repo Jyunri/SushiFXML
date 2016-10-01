@@ -6,6 +6,7 @@
 package sushitinafxml;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -33,7 +34,13 @@ public class FilaPedidosFXMLController implements Initializable {
     TableView<Ticket> tvTickets;
 
     @FXML
-    TableColumn<Ticket, String> tcCliente, tcEndereco, tcPedidos;
+    TableColumn<Ticket, Integer> tcCodigo;
+    @FXML
+    TableColumn<Ticket, String> tcTimestamp, tcCliente, tcEndereco;
+    @FXML
+    TableColumn<Ticket, Float> tcTotal;
+    @FXML
+    TableColumn<Ticket, ArrayList<Pedido>> tcPedidos;
 
     ObservableList<Ticket> tickets = FXCollections.observableArrayList();
 
@@ -43,11 +50,16 @@ public class FilaPedidosFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        tcCodigo.setCellValueFactory(new PropertyValueFactory("codigo"));
+        tcTimestamp.setCellValueFactory(new PropertyValueFactory("timestamp"));
+
         tcCliente.setCellValueFactory(new PropertyValueFactory("auxNome"));
         tcEndereco.setCellValueFactory(new PropertyValueFactory("auxEndereco"));
-        //tcPedidos.setCellValueFactory(new PropertyValueFactory("auxNome"));
+        tcTotal.setCellValueFactory(new PropertyValueFactory("precoTotal"));
+        tcPedidos.setCellValueFactory(new PropertyValueFactory("auxPedidos"));
 
         tvTickets.setItems(tickets);
+        
 
     }
 
@@ -88,6 +100,14 @@ public class FilaPedidosFXMLController implements Initializable {
         }
         System.out.println("Cancelado");
         return 1;
+    }
+
+    //todo
+    @FXML
+    public void editaTicket() {
+        Ticket t = tvTickets.getSelectionModel().getSelectedItem();
+        EditarTicketFXMLController et = new EditarTicketFXMLController();
+        et.init(this,t);
     }
 
     @FXML

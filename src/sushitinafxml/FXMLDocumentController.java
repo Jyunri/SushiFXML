@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -505,6 +506,14 @@ public class FXMLDocumentController implements Initializable {
         ticket.setPrecoTotal(tfTotal.getText());
         ticket.setFormaPagamento(cbFormaPagamento.getValue());
         ticket.setTroco(tfTroco.getText());
+        
+        
+        ArrayList<String> nomePedidos = new ArrayList();
+        for(Pedido p:pedidos)
+        {
+            nomePedidos.add(p.descricao);
+        }
+        ticket.setAuxPedidos(nomePedidos);
 
         TextArea textArea = new TextArea(ticket.imprimeTicket());
         textArea.setEditable(false);

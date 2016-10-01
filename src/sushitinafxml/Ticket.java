@@ -18,14 +18,24 @@ public class Ticket {
     Cliente cliente;
 
     String auxNome, auxEndereco;
-    
+
     String modoAtendimento;
-    
+
     String timestamp;
-    
+
     String precoTotal;
-    
+
     String formaPagamento, troco;
+    
+    List<String> auxPedidos;
+
+    public List<String> getAuxPedidos() {
+        return auxPedidos;
+    }
+
+    public void setAuxPedidos(List<String> auxPedidos) {
+        this.auxPedidos = auxPedidos;
+    }
 
     public String getModoAtendimento() {
         return modoAtendimento;
@@ -116,18 +126,21 @@ public class Ticket {
     }
 
     public String imprimeTicket() {
-        String timestampCheckout  = "Hora do pedido: "+ this.getTimestamp() + "\n";
+        String timestampCheckout = "Hora do pedido: " + this.getTimestamp() + "\n";
         String telefoneCheckout = "Telefone: " + this.cliente.telefone + "\n";
         String clienteCheckout = "Cliente: " + this.cliente.nome + "\n";
         String enderecoCheckout = "Endereco: " + this.cliente.endereco_simplificado + "\n";
         String observacaoCheckout = "Obs do cliente: " + this.cliente.observacoes + "\n";
-        String pedidoCheckout = "\n\n" + this.listaPedidos();
-        String totalCheckout = "\nTotal: " + this.precoTotal+"\nTroco: " + this.troco;
-        
+        String pedidoCheckout = "\n" + this.listaPedidos();
+        String formaPagamentoCheckout = "\nForma de Pagamento: " + this.formaPagamento;
+        String totalCheckout = "\nTotal: " + this.precoTotal + "\tTroco: " + this.troco;
+
         String ticket = timestampCheckout + clienteCheckout;
-        if(modoAtendimento.equals("d")) ticket += telefoneCheckout  + enderecoCheckout + observacaoCheckout;
-        ticket += pedidoCheckout + totalCheckout;
-        
+        if (modoAtendimento.equals("d")) {
+            ticket += telefoneCheckout + enderecoCheckout + observacaoCheckout;
+        }
+        ticket += pedidoCheckout + formaPagamentoCheckout+ totalCheckout;
+
         return ticket;
     }
 
