@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../CSS/SystemTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sushitinafxml.LoginFXMLControllerController">
+   <children>
+      <ImageView cache="true" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo_alfa.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfLogin" layoutX="200.0" layoutY="250.0" prefHeight="25.0" prefWidth="200.0" promptText="Login" text="Login" />
+      <PasswordField fx:id="tfSenha" layoutX="200.0" layoutY="291.0" promptText="Senha" />
+      <Button fx:id="btLogin" layoutX="360.0" layoutY="290.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="39.0" text="Ok" />
+      <Label layoutX="200.0" layoutY="361.0" prefHeight="16.0" prefWidth="200.0" text="Utilize apenas letras e números" />
+   </children>
+</AnchorPane>

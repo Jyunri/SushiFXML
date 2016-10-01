@@ -68,18 +68,27 @@ and open the template in the editor.
         
 }
 
-.text-field, .text-area {
+.text-field, .text-area, .choice-box, .combo-box {
     -fx-background-color: white;
     -fx-border-color: #660000,
         linear-gradient(#800000 0%, #4d0000 20%, #330000 100%),
         radial-gradient(center 50% 0%, radius 80%, rgba(179,0,0, .9), rgba(255,255,255,0));
-/*    -fx-background-radius: 5,4,3,5;
-    -fx-background-insets: 0,1,2,0;*/
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .6), 5, .0, 0, 1);
     -fx-font-family: "Arial";
     -fx-text-fill: linear-gradient(black 0%, #4d4d4d 50%, black 100%);
-    -fx-font-size: 14px;
-    /*-fx-padding: 10 20 10 20;*/
+    -fx-font-size: 12px;
+}
+
+.radio-button:selected, .check-box:selected{
+    -fx-color: #660000;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .4), 5, .0, 0, 1);
+}
+
+.radio-button, .check-box {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .2), 5, .0, 0, 1);
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(black 0%, #4d4d4d 50%, black 100%);
+    -fx-font-size: 12px;
 }
 
 .button {
@@ -114,4 +123,8 @@ and open the template in the editor.
     -fx-border-width: 1px;
     -fx-text-alignment: center;
     -fx-wrap-text: true;
+}
+
+.image-view {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0, .7), 35, .35, 0, 0);
 }
