@@ -72,7 +72,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="tfPreco" editable="false" promptText="Preço Unitário" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfPreco" promptText="Preço Unitário" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="tfQuantidade" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="10.0" />

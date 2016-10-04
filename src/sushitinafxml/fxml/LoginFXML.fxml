@@ -15,7 +15,7 @@
             <Image url="@logo_alfa.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="tfLogin" layoutX="200.0" layoutY="250.0" prefHeight="25.0" prefWidth="200.0" promptText="Login" text="Login" />
+      <TextField fx:id="tfLogin" layoutX="200.0" layoutY="250.0" prefHeight="25.0" prefWidth="200.0" promptText="Login" />
       <PasswordField fx:id="tfSenha" layoutX="200.0" layoutY="291.0" promptText="Senha" />
       <Button fx:id="btLogin" layoutX="360.0" layoutY="290.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="39.0" text="Ok" />
       <Label layoutX="200.0" layoutY="361.0" prefHeight="16.0" prefWidth="200.0" text="Utilize apenas letras e números" />

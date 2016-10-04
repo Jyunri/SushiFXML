@@ -46,6 +46,7 @@
                         </StackPane>
                     </children>
                 </VBox>
+            <Button layoutX="25.0" layoutY="233.0" mnemonicParsing="false" onAction="#loadRelatorio" prefWidth="150.0" text="Relatório" />
             </children>
         </Pane>
         <TabPane fx:id="tpNovoPedido" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">

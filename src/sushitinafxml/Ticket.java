@@ -27,6 +27,16 @@ public class Ticket {
 
     String formaPagamento, troco;
     
+    int codigo;
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
     List<String> auxPedidos;
 
     public List<String> getAuxPedidos() {
@@ -142,6 +152,11 @@ public class Ticket {
         ticket += pedidoCheckout + formaPagamentoCheckout+ totalCheckout;
 
         return ticket;
+    }
+    
+    @Override
+    public String toString() {
+        return "Ticket{" + "pedidos=" + pedidos + ", cliente=" + cliente + ", auxNome=" + auxNome + ", auxEndereco=" + auxEndereco + ", modoAtendimento=" + modoAtendimento + ", timestamp=" + timestamp + ", precoTotal=" + precoTotal + ", formaPagamento=" + formaPagamento + ", troco=" + troco + ", auxPedidos=" + auxPedidos + '}';
     }
 
 }

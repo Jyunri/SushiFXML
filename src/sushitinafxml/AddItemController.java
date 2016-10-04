@@ -72,17 +72,19 @@ public class AddItemController implements Initializable {
                 return 1;
             }
         }
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Erro!");
-        alert.setHeaderText("Item não encontrado!");
-        alert.setContentText("Deseja criar um novo item?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            //criaCliente();
-        } else {
-            // ... user chose CANCEL or closed the dialog
-        }
+        CustomUtilities.informationDialog("Erro!", false, codigoItem, "Item não encontrado!");
+        //todo dar opcao de criar novo item
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.setTitle("Erro!");
+//        alert.setHeaderText("Item não encontrado!");
+//        alert.setContentText("Deseja criar um novo item?");
+//
+//        Optional<ButtonType> result = alert.showAndWait();
+//        if (result.get() == ButtonType.OK) {
+//            //criaCliente();
+//        } else {
+//            // ... user chose CANCEL or closed the dialog
+//        }
         return 0;
     }
     

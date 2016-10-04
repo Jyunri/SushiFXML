@@ -473,7 +473,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public int finalizaPedido() {
+    public int finalizaPedido() throws IOException {
         if (ticket.modoAtendimento.equals("d") && ticket.cliente == null) {
             System.out.println("Selecione um cliente");
             CustomUtilities.informationDialog("Erro!", false, "", "Confirme um cliente na aba *Cliente*");
@@ -499,6 +499,7 @@ public class FXMLDocumentController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Voce deseja gerar um ticket para o pedido abaixo?");
 
+        ticket.setCodigo(CustomUtilities.getCodigoTicket());
         ticket.setTimestamp(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date()));
         ticket.setPrecoTotal(tfTotal.getText());
         ticket.setFormaPagamento(cbFormaPagamento.getValue());
@@ -560,5 +561,18 @@ public class FXMLDocumentController implements Initializable {
             // ... user chose CANCEL or closed the dialog
         }
     }
-
+    
+    @FXML
+    public void loadRelatorio(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/RelatoriosFXML.fxml"));
+            RelatoriosFXMLController relatorioscontroller = new RelatoriosFXMLController();
+            relatorioscontroller.init(this);
+            fxmlLoader.setController(relatorioscontroller);
+            Parent root1 = (Parent) fxmlLoader.load();
+            spRoot.getItems().set(1, root1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
