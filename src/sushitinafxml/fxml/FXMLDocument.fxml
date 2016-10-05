@@ -321,7 +321,7 @@
                                  </padding>
                               </Label>
                               <ComboBox fx:id="cbFormaPagamento" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label text="Valor a pagar" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <Label text="Valor a receber" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                               <TextField fx:id="tfPago" onAction="#calculaTroco" text="0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets right="10.0" />

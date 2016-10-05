@@ -7,10 +7,12 @@ package sushitinafxml;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -20,9 +22,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javafx.scene.control.Alert;
+import javax.print.Doc;
 import javax.print.PrintService;
 import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintException;
 import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
 
 /**
  *
@@ -57,6 +63,25 @@ public class CustomUtilities {
         return null;
     }
 
+    public static boolean imprime(String texto) {
+        PrintService impressora = PrintServiceLookup.lookupDefaultPrintService();
+        if (impressora == null) {
+            informationDialog("Erro!", false, "", "Nenhuma impressora encontrada! Verifique sua impressora padrão");
+        } else {
+            try {
+                DocPrintJob dpj = impressora.createPrintJob();
+                InputStream stream = new ByteArrayInputStream((texto + "\n").getBytes());
+                DocFlavor flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
+                Doc doc = new SimpleDoc(stream, flavor, null);
+                dpj.print(doc, null);
+                return true;
+            } catch (PrintException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
     public static String formataDecimais(float numero) {
         DecimalFormat df = new DecimalFormat("#.##");
         return df.format(numero);
@@ -73,22 +98,32 @@ public class CustomUtilities {
     }
 
     public static int getCodigoTicket() throws FileNotFoundException, IOException {
-//        String filename = "Specifications.csv";
-//        CSVReader reader = new CSVReader(new FileReader(filename));
-//        CSVWriter writer = new CSVWriter(new FileWriter(filename, false));
-//
-//        reader.readNext();
-//
-//        int codigo;
-//        String[] nextLine;
-//
-//        reader.readNext();
-//        while ((nextLine = reader.readNext()) != null) {
-//            codigo = Integer.valueOf(nextLine[0]);
-//            //nextLine[0].
-//        }
-// 
-//        return codigo;
-return 0;
+        String filename = "Specifications.csv";
+        CSVReader reader = new CSVReader(new FileReader(filename));
+        int codigo;
+
+        List<String[]> csvBody = reader.readAll();
+        codigo = Integer.valueOf(csvBody.get(1)[0]);
+        reader.close();
+
+        return codigo;
+    }
+
+    public static int updateCodigoTicket() throws FileNotFoundException, IOException {
+        String filename = "Specifications.csv";
+        CSVReader reader = new CSVReader(new FileReader(filename));
+        int codigo;
+
+        List<String[]> csvBody = reader.readAll();
+        codigo = Integer.valueOf(csvBody.get(1)[0]);
+        csvBody.get(1)[0] = String.valueOf(codigo + 1);
+        reader.close();
+
+        CSVWriter writer = new CSVWriter(new FileWriter(filename, false));
+        writer.writeAll(csvBody);
+        writer.flush();
+        writer.close();
+
+        return codigo;
     }
 }

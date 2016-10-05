@@ -122,7 +122,7 @@ public class RelatoriosFXMLController implements Initializable {
                 + "Receita por balcão: " + receita_balcao_diario;
         
         String relatorio_mensal = 
-                "** Relatorio mensal + **\n" + "\n"
+                "** Relatorio mensal **\n" + "\n"
                 + "Quantidade de tickets total: " + qtd_tickets_mensal + "\n"
                 + "Quantidade de tickets delivery: " + qtd_delivery_mensal + "\n"
                 + "Quantidade de tickets por balcão: " + qtd_balcao_mensal + "\n"

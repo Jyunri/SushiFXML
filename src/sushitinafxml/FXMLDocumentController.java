@@ -502,6 +502,7 @@ public class FXMLDocumentController implements Initializable {
         ticket.setCodigo(CustomUtilities.getCodigoTicket());
         ticket.setTimestamp(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date()));
         ticket.setPrecoTotal(tfTotal.getText());
+        ticket.setTotalReceber(tfPago.getText());
         ticket.setFormaPagamento(cbFormaPagamento.getValue());
         ticket.setTroco(tfTroco.getText());
         
@@ -533,11 +534,13 @@ public class FXMLDocumentController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             System.out.println("gerando ticket para o motoboy");
+            
+            CustomUtilities.updateCodigoTicket();
             CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila! Retire seu ticket na impressora!");
+            CustomUtilities.imprime(ticket.imprimeTicket());
+            
             SushiTinaFXML.filaPedidosFXMLController.tickets.add(ticket);
-            for (String printer : CustomUtilities.retornaImpressoras()) {
-                System.out.println(printer);
-            }
+            
 
             tfTotal.clear();
             loadBemVindo();
