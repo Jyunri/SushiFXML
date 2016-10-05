@@ -118,7 +118,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TextField tfTotal, tfPago, tfTroco;
-    
+
     @FXML
     private ComboBox<String> cbFormaPagamento;
 
@@ -248,7 +248,7 @@ public class FXMLDocumentController implements Initializable {
         btFinalizar.setDisable(true);
 
         loadTabelaPedidos();
-        cbFormaPagamento.getItems().addAll("Dinheiro","Cheque","Cartão");
+        cbFormaPagamento.getItems().addAll("Dinheiro", "Cheque", "Cartão");
         cbFormaPagamento.setValue("Dinheiro");
     }
 
@@ -274,6 +274,9 @@ public class FXMLDocumentController implements Initializable {
     void loadInicio(ActionEvent event) {
         //Pedidos
         pedidos.removeAll(pedidos); //limpa todos os pedidos anteriores
+        tfPago.textProperty().addListener((observable, oldValue, newValue) -> {
+            calculaTroco(event);
+        });
 
         if (ticket.modoAtendimento.equals("d")) {
             tpNovoPedido.getSelectionModel().select(tbCliente); //inicia a Tab selecionando a primeira tab
@@ -286,7 +289,7 @@ public class FXMLDocumentController implements Initializable {
             tpNovoPedido.getSelectionModel().select(tbPedido); //inicia a Tab selecionando a segunda tab
             tbCliente.setDisable(true);
         }
-        
+
         calculaTotal();
         spRoot.getItems().set(1, tpNovoPedido);
     }
@@ -443,10 +446,11 @@ public class FXMLDocumentController implements Initializable {
         tfTotal.setText(CustomUtilities.formataDecimais(sumTotal));
         calculaTroco(new ActionEvent());
     }
-    
+
     @FXML
-    public void calculaTroco(ActionEvent event){
-        tfTroco.setText(CustomUtilities.formataDecimais(Float.valueOf(tfPago.getText())-Float.valueOf(tfTotal.getText())));
+    public void calculaTroco(ActionEvent event) {
+        if(tfPago.getText().isEmpty())  tfPago.setText("0");
+        tfTroco.setText(CustomUtilities.formataDecimais(Float.valueOf(tfPago.getText()) - Float.valueOf(tfTotal.getText())));
     }
 
     public void adicionaCarrinho(String codigo, String descricao, String preco, String quantidade, String obs) {
@@ -505,11 +509,9 @@ public class FXMLDocumentController implements Initializable {
         ticket.setTotalReceber(tfPago.getText());
         ticket.setFormaPagamento(cbFormaPagamento.getValue());
         ticket.setTroco(tfTroco.getText());
-        
-        
+
         ArrayList<String> nomePedidos = new ArrayList();
-        for(Pedido p:pedidos)
-        {
+        for (Pedido p : pedidos) {
             nomePedidos.add(p.descricao);
         }
         ticket.setAuxPedidos(nomePedidos);
@@ -534,13 +536,12 @@ public class FXMLDocumentController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             System.out.println("gerando ticket para o motoboy");
-            
+
             CustomUtilities.updateCodigoTicket();
             CustomUtilities.informationDialog("Ticket Gerado!", false, "", "Seu pedido foi enviado a fila! Retire seu ticket na impressora!");
             CustomUtilities.imprime(ticket.imprimeTicket());
-            
+
             SushiTinaFXML.filaPedidosFXMLController.tickets.add(ticket);
-            
 
             tfTotal.clear();
             loadBemVindo();
@@ -564,9 +565,9 @@ public class FXMLDocumentController implements Initializable {
             // ... user chose CANCEL or closed the dialog
         }
     }
-    
+
     @FXML
-    public void loadRelatorio(){
+    public void loadRelatorio() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/RelatoriosFXML.fxml"));
             RelatoriosFXMLController relatorioscontroller = new RelatoriosFXMLController();
